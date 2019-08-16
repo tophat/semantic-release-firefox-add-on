@@ -1,32 +1,61 @@
-# New Project Kit
-
-## How to use this repository
-
-This repository covers some must-haves when starting a project so you don't have to. Things like setting up a basic CI configuration, a README, issue templates and whatnot. Simply clone it and fill it up with your project's files! Everything you find in here is a suggestion rather than a prescription; don't feel obligated to stick to the templated format! After all, every project is unique in its own right.
-
-To get started, take out this __How to__ section, replace __New Project Kit__ with your project's name and fill up the README template below!
-
-__Nice-to-haves__
-- A lot of projects have __a nice logo__ that catches the eye and builds branding, feel free to add one to your project!
-- __Badges__ are a great way to visually represent the current state of your project, from CI to latest released versions.
-- Don't forget to add in a badge for your project's [Maturity Score](https://github.com/tophat/getting-started/blob/master/scorecard.md)!
-- __Screenshots or GIFs of your project in action__ can also be pretty cool to have in here!
+# semantic-release-firefox
 
 ## Overview
 
-_At a high-level, what is your project about? What problem does it solve? This is the first thing people will see when landing on your repository, make it snappy!_
+This package provides a set of [`semantic-release`][semantic-release] plugins for you to easily publish Firefox add ons automatically. Firefox requires that even self-distributed packages are signed through the add on store. Given a built package, it will write the correct version number into `manifest.json` and upload the dist folder to the add on store. The package will be validated by Mozilla, and if valid, a signed distribution will be returned and downloaded into the artifacts folder.
 
 ## Motivation
 
-_This can be an extension of the Overview describing your problem space. It's a cool way to give an origin story to your project._
+We were working on a dev tooling extension internally and wanted to release it through the Chrome web store and Firefox Add On store. The `semantic-release-chrome` extension worked wonderfully, but we kept struggling to find a `semantic-release-firefox` plugin that worked the way we wanted. After finding that `web-ext` had a Node api, we just built our own plugins using `web-ext` to accomplish the goal.
 
 ## Installation
 
-_How can users set up your project? Through npm/yarn? Through a manual installer and some cURL magic? Be as thorough as you can!_
+This module is distributed via [npm][npm] which is bundled with [node][node] and
+should be installed as one of your project's `devDependencies`:
+
+```bash
+npm install --save-dev @tophat/semantic-release-firefox
+```
 
 ## Usage
 
-_Once installed, how can your users make it work?_
+This package export the following plugins:
+
+### `verifyConditions`
+
+Verify the presence of the authentication parameters, which are set via environment variables (see [Firefox authentication][chrome-authentication]).
+
+#### `verifyConditions` parameters
+
+### `prepare`
+
+Writes the correct version to the `manifest.json` and creates a `zip` file with everything inside the `dist` folder.
+
+This plugin requires some parameters to be set, so be sure to check below and fill them accordingly.
+
+#### `prepare` parameters
+
+- `asset`: **REQUIRED** parameter. The filename of the zip file.
+
+- `distFolder`: The folder that will be zipped. Defaults to `dist`.
+
+- `manifestPath`: The path of the `manifest.json` file inside the dist folder. Defaults to `<distFolder parameter>/manifest.json`.
+
+### `publish`
+
+Uploads the generated zip file to the webstore and publishes a new release.
+
+#### `publish` parameters
+
+- `extensionId`: **REQUIRED** parameter. The `extension id` from the webstore. For example: If the url of your extension is [https://chrome.google.com/webstore/detail/webplayer-hotkeys-shortcu/ikmkicnmahfdilneilgibeppbnolgkaf](https://chrome.google.com/webstore/detail/webplayer-hotkeys-shortcu/ikmkicnmahfdilneilgibeppbnolgkaf), then the last portion, `ikmkicnmahfdilneilgibeppbnolgkaf`, will be the `extension id`. You can also take this ID on the [developers dashboard](https://chrome.google.com/webstore/developer/dashboard), under the name `Item ID` located inside the `More info` dialog.
+
+  Unfortunately, due to Google's restrictions, this plugin can only publish extensions that already exists on the store, so you will have to at least make a draft release for yourself, so the plugin can create a proper release for the first time. You can create a draft release with just a minimum `manifest.json` with version `0.0.1` compressed in a zip file.
+
+  If you decide to make the draft, make sure to fill all the required fields on the drafts page, otherwise the publishing will fail with a `400` status code (Bad request).
+
+- `asset`: **REQUIRED** parameter. The zip file that will be published to the chrome webstore.
+
+- `target`: can be `default` or `trustedTesters`. When released using the first, the extension will be publicly available to everyone. When `trustedTesters` is used, it will be released as a [private extension](https://support.google.com/chrome/a/answer/2663860). Defaults to `default`.
 
 ## Uninstalling
 

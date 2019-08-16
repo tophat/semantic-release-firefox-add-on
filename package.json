@@ -1,0 +1,16 @@
+{
+  "name": "semantic-release-firefox",
+  "version": "0.0.1",
+  "description": "A Semantic Release plugin to build and sign packages through the Firefox AddOn store",
+  "main": "src/index.js",
+  "repository": "git@github.com:tophat/semantic-release-firefox.git",
+  "author": "Daniel Basilio <daniel.basilio@tophat.com>",
+  "license": "Apache-2.0",
+  "private": false,
+  "dependencies": {
+    "web-ext": "^3.1.0"
+  },
+  "devDependencies": {
+    "semantic-release": "^15.13.18"
+  }
+}

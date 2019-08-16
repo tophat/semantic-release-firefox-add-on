@@ -5,6 +5,6 @@ const defaultOptions = {
     targetXpi: 'myextension.xpi',
 }
 
-module.exports = [
+module.exports = {
     defaultOptions,
-]
+}

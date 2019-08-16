@@ -1,5 +1,5 @@
 const defaultOptions = {
-    artifactsDir: './',
+    artifactsDir: './artifacts',
     manifestPath: 'manifest.json',
     sourceDir: 'dist',
     targetXpi: 'myextension.xpi',

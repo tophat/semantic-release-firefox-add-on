@@ -1,15 +1,14 @@
 const fs = require('fs')
 const path = require('path')
 
-const defaultOptions = require('./constants')
+const { maybeThrowErrors, verifyConfig } = require('./utils')
 
-const verifyConditions = ({ extensionId, ...options }) => {
-    const { sourceDir, manifestPath } = {
-        ...defaultOptions,
-        ...options,
-    }
+const verifyConditions = options => {
+    const {
+        options: { extensionId, sourceDir, manifestPath },
+        errors,
+    } = verifyConfig(options)
     const { FIREFOX_API_KEY, FIREFOX_SECRET_KEY } = process.env
-    const errors = []
 
     if (!FIREFOX_API_KEY) {
         errors.push('FIREFOX_API_KEY is missing from the environment')
@@ -32,9 +31,7 @@ const verifyConditions = ({ extensionId, ...options }) => {
         )
     }
 
-    if (errors.length > 0) {
-        throw new Error(errors.join('\n'))
-    }
+    maybeThrowErrors(errors)
 }
 
 module.exports = {

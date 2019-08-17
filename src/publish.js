@@ -2,7 +2,7 @@ const fs = require('fs')
 const path = require('path')
 const webExt = require('web-ext').default
 
-const { maybeThrowErrors, verifyConfig } = require('./utils')
+const { verifyConfig } = require('./utils')
 
 const publish = async options => {
     // This will create an unsigned xpi from sourceDir folder (dist) it will
@@ -12,11 +12,10 @@ const publish = async options => {
     // If there's an error with the validation, webExt sign will log a link to
     // the console which will lead to the validation page which should contain
     // detailed reasons why the extension was rejected
-    const {
-        options: { extensionId, artifactsDir, sourceDir, targetXpi },
-        errors,
-    } = verifyConfig(options, ['extensionId'])
-    maybeThrowErrors(errors)
+    const { extensionId, artifactsDir, sourceDir, targetXpi } = verifyConfig(
+        options,
+        ['extensionId'],
+    )
 
     const { FIREFOX_API_KEY, FIREFOX_SECRET_KEY } = process.env
     const { success, downloadedFiles } = await webExt.cmd.sign({

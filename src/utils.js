@@ -1,3 +1,9 @@
+const throwErrors = errors => {
+    if (errors.length > 0) {
+        throw new Error(errors.join('\n'))
+    }
+}
+
 const defaultOptions = {
     artifactsDir: './artifacts',
     manifestPath: 'manifest.json',
@@ -13,16 +19,11 @@ const verifyConfig = (options, required = []) => {
             errors.push(`${prop} is missing from the options`)
         }
     }
-    return { options: mergedOptions, errors }
-}
-
-const maybeThrowErrors = errors => {
-    if (errors.length > 0) {
-        throw new Error(errors.join('\n'))
-    }
+    throwErrors(errors)
+    return mergedOptions
 }
 
 module.exports = {
-    maybeThrowErrors,
+    throwErrors,
     verifyConfig,
 }

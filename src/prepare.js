@@ -1,14 +1,10 @@
 const fs = require('fs')
 const path = require('path')
 
-const { maybeThrowErrors, verifyConfig } = require('./utils')
+const { verifyConfig } = require('./utils')
 
 const prepare = (options, { nextRelease, logger }) => {
-    const {
-        options: { sourceDir, manifestPath },
-        errors,
-    } = verifyConfig(options)
-    maybeThrowErrors(errors)
+    const { sourceDir, manifestPath } = verifyConfig(options)
 
     const version = nextRelease.version
     const normalizedManifestPath = path.join(sourceDir, manifestPath)

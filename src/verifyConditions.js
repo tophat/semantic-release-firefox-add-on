@@ -4,7 +4,7 @@ const path = require('path')
 const { throwErrors, verifyConfig } = require('./utils')
 
 const verifyConditions = options => {
-    const { extensionId, sourceDir, manifestPath } = verifyConfig(options)
+    const { extensionId, sourceDir, manifestPath, targetXpi } = verifyConfig(options)
     const { FIREFOX_API_KEY, FIREFOX_SECRET_KEY } = process.env
 
     const errors = []
@@ -17,6 +17,11 @@ const verifyConditions = options => {
     if (!extensionId) {
         errors.push(
             'No extensionId was specified in package.json, this would create a new extension instead of a new version.',
+        )
+    }
+    if (!targetXpi) {
+        errors.push(
+            'No targetXpi was specified in package.json, this would leave the xpi file unnamed when it is returned from mozilla.',
         )
     }
     const manifestExists = fs.existsSync(path.join(sourceDir, manifestPath))

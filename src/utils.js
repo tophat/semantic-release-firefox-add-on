@@ -6,9 +6,9 @@ const throwErrors = errors => {
 
 const defaultOptions = {
     artifactsDir: './artifacts',
+    channel: 'unlisted',
     manifestPath: 'manifest.json',
     sourceDir: 'dist',
-    targetXpi: 'myextension.xpi',
 }
 
 const verifyConfig = (options, required = []) => {

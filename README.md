@@ -40,9 +40,11 @@ For more information on the environment variables, see [Firefox authentication][
 
 - `extensionId`: **REQUIRED** The extension id of the extension from the Mozilla Add On store. If this is not specified then a new extension will be created each time the release is run. In order to avoid issues arising due to this, the extension must be created in the Add On store first and the extension Id put into the semantic release configuration.
 
-- `sourceDir`: The path of the source directory.
+- `targetXpi`: **REQUIRED** The filename of the XPI file to store in the artifacts directory.
 
-- `manifestPath`: The location of the manifest file within the source directory.
+- `sourceDir`: The path of the source directory. Defaults to `dist`.
+
+- `manifestPath`: The location of the manifest file within the source directory. Defaults to `manifest.json`.
 
 ### `prepare`
 
@@ -52,9 +54,9 @@ This plugin requires some parameters to be set, so be sure to check below and fi
 
 #### `prepare` parameters
 
-- `sourceDir`: The path of the source directory.
+- `sourceDir`: The path of the source directory. Defaults to `dist`.
 
-- `manifestPath`: The location of the manifest file within the source directory.
+- `manifestPath`: The location of the manifest file within the source directory. Defaults to `manifest.json`.
 
 ### `publish`
 
@@ -64,11 +66,13 @@ Creates an unsigned XPI file out of the source directory and uploads it to the M
 
 - `extensionId`: **REQUIRED** The extension id of the extension from the Mozilla Add On store.
 
-- `sourceDir`: The path of the source directory.
+- `targetXpi`: **REQUIRED** The filename of the XPI file to store in the artifacts directory.
 
-- `artifactsDir`: The location to store the signed XPI file when it is returned from Mozilla.
+- `sourceDir`: The path of the source directory. Defaults to `dist`.
 
-- `targetXpi`: The filename of the XPI file to store in the artifacts directory.
+- `channel`: The release channel, options are `unlisted` or `listed`. An unlisted add on is not published to the store and is justed signed. Defaults to `unlisted`.
+
+- `artifactsDir`: The location to store the signed XPI file when it is returned from Mozilla. Defaults to `./artifacts`.
 
 ## Contributors
 

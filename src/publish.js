@@ -12,7 +12,7 @@ const publish = async options => {
     // If there's an error with the validation, webExt sign will log a link to
     // the console which will lead to the validation page which should contain
     // detailed reasons why the extension was rejected
-    const { extensionId, artifactsDir, sourceDir, targetXpi } = verifyConfig(
+    const { extensionId, artifactsDir, channel, sourceDir, targetXpi } = verifyConfig(
         options,
         ['extensionId'],
     )
@@ -22,7 +22,7 @@ const publish = async options => {
         apiKey: FIREFOX_API_KEY,
         apiSecret: FIREFOX_SECRET_KEY,
         artifactsDir,
-        channel: 'unlisted',
+        channel,
         id: extensionId,
         sourceDir,
     })

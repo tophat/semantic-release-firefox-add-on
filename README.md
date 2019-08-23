@@ -17,11 +17,13 @@ should be installed as one of your project's `devDependencies`:
 npm install --save-dev @tophat/semantic-release-firefox
 ```
 
-## Usage
-
-### Mozilla Add On authentication
+## Mozilla Add On authentication
 
 You will need to get two parameters from the Add On store: an `API Key`, and a `Secret Key`. For more information on how to get those parameters and how to set the environment variables which are required in order for this plugin to work properly, read [this guide](https://addons-server.readthedocs.io/en/latest/topics/api/auth.html#access-credentials).
+
+web-ext takes care of creation of the JWT, the only items needed are the `API Key` and `Secret Key`.
+
+## Usage
 
 This package export the following plugins:
 

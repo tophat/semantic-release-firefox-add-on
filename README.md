@@ -1,4 +1,4 @@
-# semantic-release-firefox
+# semantic-release-firefox-add-on
 
 ## Overview
 
@@ -6,7 +6,7 @@ This package provides a set of [`semantic-release`][semantic-release] plugins fo
 
 ## Motivation
 
-We were working on a dev tooling extension internally and wanted to release it through the Chrome web store and Mozilla Add On store. The [`semantic-release-chrome`][semantic-release-chrome] extension worked wonderfully, but we kept struggling to find a `semantic-release-firefox` plugin that worked the way we wanted. After finding that [`web-ext`][web-ext] had a Node api, we just built our own plugins using `web-ext` to accomplish the goal.
+We were working on a dev tooling extension internally and wanted to release it through the Chrome web store and Mozilla Add On store. The [`semantic-release-chrome`][semantic-release-chrome] extension worked wonderfully, but we kept struggling to find a [`semantic-release`][semantic-release] plugin for FireFox that worked the way we wanted. After finding that [`web-ext`][web-ext] had a Node api, we just built our own plugins using `web-ext` to accomplish the goal.
 
 ## Installation
 
@@ -14,7 +14,7 @@ This module is distributed via [npm][npm] which is bundled with [node][node] and
 should be installed as one of your project's `devDependencies`:
 
 ```bash
-npm install --save-dev @tophat/semantic-release-firefox
+npm install --save-dev @tophat/semantic-release-firefox-add-on
 ```
 
 ## Mozilla Add On authentication

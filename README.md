@@ -2,11 +2,11 @@
 
 ## Overview
 
-This package provides a set of [`semantic-release`][semantic-release] plugins for you to easily publish Firefox add ons automatically. Firefox requires that even self-distributed packages are signed through the add on store. Given a built package, it will write the correct version number into `manifest.json` and upload the dist folder to the add on store. The package will be validated by Mozilla, and if valid, a signed distribution will be returned and downloaded into the artifacts folder.
+This package provides a set of [`semantic-release`][semantic-release] plugins for you to easily publish Firefox add ons automatically. Mozilla requires that even self-distributed packages are signed through the add on store. Given a built package, it will write the correct version number into `manifest.json` and upload the dist folder to the add on store. The package will be validated by Mozilla, and if valid, a signed distribution will be returned and downloaded into the artifacts folder.
 
 ## Motivation
 
-We were working on a dev tooling extension internally and wanted to release it through the Chrome web store and Mozilla Add On store. The `semantic-release-chrome` extension worked wonderfully, but we kept struggling to find a `semantic-release-firefox` plugin that worked the way we wanted. After finding that `web-ext` had a Node api, we just built our own plugins using `web-ext` to accomplish the goal.
+We were working on a dev tooling extension internally and wanted to release it through the Chrome web store and Mozilla Add On store. The [`semantic-release-chrome`][semantic-release-chrome] extension worked wonderfully, but we kept struggling to find a `semantic-release-firefox` plugin that worked the way we wanted. After finding that [`web-ext`][web-ext] had a Node api, we just built our own plugins using `web-ext` to accomplish the goal.
 
 ## Installation
 
@@ -70,12 +70,6 @@ Creates an unsigned XPI file out of the source directory and uploads it to the M
 
 - `targetXpi`: The filename of the XPI file to store in the artifacts directory.
 
-## Contributing
-
-_Instructions or guidelines on how to contribute are essential to any OSS project! You can easily split this off to a CONTRIBUTING document alongside the README, or keep it in here._
-
-_In your contribution guide, you can outline best practices, how to set up a development environment that meets the needs of your project, and what the process is to get contributions merged._
-
 ## Contributors
 
 _You don't really have to add this section yourself! Simply use [all-contributors](https://allcontributors.org/) by adding comments in your PRs like so:_
@@ -86,4 +80,8 @@ _You don't really have to add this section yourself! Simply use [all-contributor
 
 _Find out more about All-Contributors on their website!_
 
-
+[npm]: https://www.npmjs.com/
+[node]: https://nodejs.org
+[semantic-release]: https://github.com/semantic-release/semantic-release
+[semantic-release-chrome]: https://github.com/GabrielDuarteM/semantic-release-chrome
+[web-ext]: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Getting_started_with_web-ext

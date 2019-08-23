@@ -2,9 +2,9 @@ const fs = require('fs')
 const path = require('path')
 const webExt = require('web-ext').default
 
-const defaultOptions = require('./constants')
+const { verifyConfig } = require('./utils')
 
-const publish = async ({ extensionId, ...options }) => {
+const publish = async options => {
     // This will create an unsigned xpi from sourceDir folder (dist) it will
     // then pass the unsigned xpi to the signing api, mozilla will validate the
     // xpi and sign it if it's legitimate. They will give us back a signed xpi
@@ -12,10 +12,11 @@ const publish = async ({ extensionId, ...options }) => {
     // If there's an error with the validation, webExt sign will log a link to
     // the console which will lead to the validation page which should contain
     // detailed reasons why the extension was rejected
-    const { artifactsDir, sourceDir, targetXpi } = {
-        ...defaultOptions,
-        ...options,
-    }
+    const { extensionId, artifactsDir, sourceDir, targetXpi } = verifyConfig(
+        options,
+        ['extensionId'],
+    )
+
     const { FIREFOX_API_KEY, FIREFOX_SECRET_KEY } = process.env
     const { success, downloadedFiles } = await webExt.cmd.sign({
         apiKey: FIREFOX_API_KEY,

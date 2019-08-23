@@ -11,6 +11,12 @@
     "web-ext": "^3.1.0"
   },
   "devDependencies": {
+    "@tophat/eslint-config": "^0.1.4",
+    "babel-eslint": "^10.0.2",
+    "eslint": "^6.1.0",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "prettier": "^1.18.2",
     "semantic-release": "^15.13.18"
   }
 }

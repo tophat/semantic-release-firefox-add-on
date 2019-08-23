@@ -70,10 +70,6 @@ Creates an unsigned XPI file out of the source directory and uploads it to the M
 
 - `targetXpi`: The filename of the XPI file to store in the artifacts directory.
 
-## Uninstalling
-
-_If there is a specific procedure to uninstall your project that isn't straightforward and/or well-defined, you should outline it here to avoid frustrations._
-
 ## Contributing
 
 _Instructions or guidelines on how to contribute are essential to any OSS project! You can easily split this off to a CONTRIBUTING document alongside the README, or keep it in here._

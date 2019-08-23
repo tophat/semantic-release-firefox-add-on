@@ -14,7 +14,7 @@ This module is distributed via [npm][npm] which is bundled with [node][node] and
 should be installed as one of your project's `devDependencies`:
 
 ```bash
-npm install --save-dev @tophat/semantic-release-firefox-add-on
+npm install --save-dev semantic-release-firefox-add-on
 ```
 
 ## Mozilla Add On authentication

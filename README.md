@@ -1,42 +1,74 @@
-# New Project Kit
-
-## How to use this repository
-
-This repository covers some must-haves when starting a project so you don't have to. Things like setting up a basic CI configuration, a README, issue templates and whatnot. Simply clone it and fill it up with your project's files! Everything you find in here is a suggestion rather than a prescription; don't feel obligated to stick to the templated format! After all, every project is unique in its own right.
-
-To get started, take out this __How to__ section, replace __New Project Kit__ with your project's name and fill up the README template below!
-
-__Nice-to-haves__
-- A lot of projects have __a nice logo__ that catches the eye and builds branding, feel free to add one to your project!
-- __Badges__ are a great way to visually represent the current state of your project, from CI to latest released versions.
-- Don't forget to add in a badge for your project's [Maturity Score](https://github.com/tophat/getting-started/blob/master/scorecard.md)!
-- __Screenshots or GIFs of your project in action__ can also be pretty cool to have in here!
+# semantic-release-firefox
 
 ## Overview
 
-_At a high-level, what is your project about? What problem does it solve? This is the first thing people will see when landing on your repository, make it snappy!_
+This package provides a set of [`semantic-release`][semantic-release] plugins for you to easily publish Firefox add ons automatically. Mozilla requires that even self-distributed packages are signed through the add on store. Given a built package, it will write the correct version number into `manifest.json` and upload the dist folder to the add on store. The package will be validated by Mozilla, and if valid, a signed distribution will be returned and downloaded into the artifacts folder.
 
 ## Motivation
 
-_This can be an extension of the Overview describing your problem space. It's a cool way to give an origin story to your project._
+We were working on a dev tooling extension internally and wanted to release it through the Chrome web store and Mozilla Add On store. The [`semantic-release-chrome`][semantic-release-chrome] extension worked wonderfully, but we kept struggling to find a `semantic-release-firefox` plugin that worked the way we wanted. After finding that [`web-ext`][web-ext] had a Node api, we just built our own plugins using `web-ext` to accomplish the goal.
 
 ## Installation
 
-_How can users set up your project? Through npm/yarn? Through a manual installer and some cURL magic? Be as thorough as you can!_
+This module is distributed via [npm][npm] which is bundled with [node][node] and
+should be installed as one of your project's `devDependencies`:
+
+```bash
+npm install --save-dev @tophat/semantic-release-firefox
+```
+
+## Mozilla Add On authentication
+
+You will need to get two parameters from the Add On store: an `API Key`, and a `Secret Key`. For more information on how to get those parameters and how to set the environment variables which are required in order for this plugin to work properly, read [this guide](https://addons-server.readthedocs.io/en/latest/topics/api/auth.html#access-credentials).
+
+web-ext takes care of creation of the JWT, the only items needed are the `API Key` and `Secret Key`.
 
 ## Usage
 
-_Once installed, how can your users make it work?_
+This package export the following plugins:
 
-## Uninstalling
+### `verifyConditions`
 
-_If there is a specific procedure to uninstall your project that isn't straightforward and/or well-defined, you should outline it here to avoid frustrations._
+Verify the following:
+- That environment variables are set for Add On store authentication 
+- That an extensionId was specified in the configuration
+- That the source directory is built and that we can locate the manifest.json file within the source directory
 
-## Contributing
+For more information on the environment variables, see [Firefox authentication][firefox-authentication])
 
-_Instructions or guidelines on how to contribute are essential to any OSS project! You can easily split this off to a CONTRIBUTING document alongside the README, or keep it in here._
+#### `verifyConditions` parameters
 
-_In your contribution guide, you can outline best practices, how to set up a development environment that meets the needs of your project, and what the process is to get contributions merged._
+- `extensionId`: **REQUIRED** The extension id of the extension from the Mozilla Add On store. If this is not specified then a new extension will be created each time the release is run. In order to avoid issues arising due to this, the extension must be created in the Add On store first and the extension Id put into the semantic release configuration.
+
+- `sourceDir`: The path of the source directory.
+
+- `manifestPath`: The location of the manifest file within the source directory.
+
+### `prepare`
+
+Writes the correct version to the `manifest.json`.
+
+This plugin requires some parameters to be set, so be sure to check below and fill them accordingly.
+
+#### `prepare` parameters
+
+- `sourceDir`: The path of the source directory.
+
+- `manifestPath`: The location of the manifest file within the source directory.
+
+### `publish`
+
+Creates an unsigned XPI file out of the source directory and uploads it to the Mozilla Add On, using the web-ext sign command. The output from the sign command will be passed through to the console. If the package is validated and signed, it will downloaded the signed XPI file and store it in the artifacts directory under the specified file name.
+
+#### `publish` parameters
+
+- `extensionId`: **REQUIRED** The extension id of the extension from the Mozilla Add On store.
+
+- `sourceDir`: The path of the source directory.
+
+- `artifactsDir`: The location to store the signed XPI file when it is returned from Mozilla.
+
+- `targetXpi`: The filename of the XPI file to store in the artifacts directory.
 
 ## Contributors
 
@@ -48,4 +80,8 @@ _You don't really have to add this section yourself! Simply use [all-contributor
 
 _Find out more about All-Contributors on their website!_
 
-
+[npm]: https://www.npmjs.com/
+[node]: https://nodejs.org
+[semantic-release]: https://github.com/semantic-release/semantic-release
+[semantic-release-chrome]: https://github.com/GabrielDuarteM/semantic-release-chrome
+[web-ext]: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Getting_started_with_web-ext

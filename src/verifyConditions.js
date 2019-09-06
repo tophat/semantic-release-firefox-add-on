@@ -4,7 +4,8 @@ const path = require('path')
 const { throwErrors, verifyConfig } = require('./utils')
 
 const verifyConditions = options => {
-    const { extensionId, sourceDir, manifestPath, targetXpi } = verifyConfig(options)
+    const verified = verifyConfig(options)
+    const { extensionId, sourceDir, manifestPath, targetXpi } = verified
     const { FIREFOX_API_KEY, FIREFOX_SECRET_KEY } = process.env
 
     const errors = []

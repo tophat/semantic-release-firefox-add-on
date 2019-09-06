@@ -14,11 +14,11 @@ const defaultOptions = {
 const verifyConfig = (options, required = []) => {
     const errors = []
     const mergedOptions = { ...defaultOptions, ...options }
-    for (const prop of required) {
+    required.forEach(prop => {
         if (mergedOptions[prop] === undefined) {
             errors.push(`${prop} is missing from the options`)
         }
-    }
+    })
     throwErrors(errors)
     return mergedOptions
 }

@@ -50,7 +50,13 @@ workflows:
                     - lint
                     - test
                     - build
-                filters:
-                    branches:
-                        only:
-                            - master
+                # *
+                # Deploy job uses semantic-release which filters by branch
+                # it runs in dry mode when the branch does not match master
+                # which is useful for catching misconfiguration
+                # see: `yarn release`
+                # *
+                # filters:
+                #     branches:
+                #         only:
+                #             - master

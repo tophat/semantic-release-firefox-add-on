@@ -28,7 +28,7 @@
     "yarn-deduplicate": "^1.1.1"
   },
   "scripts": {
-    "build": "echo 'No build steps required'",
+    "build": "echo 'No build steps required. When changing this remember to update @semantic-release/npm.'",
     "commit": "git-cz",
     "dedup": "yarn-deduplicate",
     "lint": "eslint . --ext .js,.ts --max-warnings=0",
@@ -59,5 +59,14 @@
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
       "pre-commit": "lint-staged"
     }
+  },
+  "release": {
+    "dryRun": true,
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/github",
+      "@semantic-release/npm"
+    ]
   }
 }

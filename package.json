@@ -28,6 +28,7 @@
     "yarn-deduplicate": "^1.1.1"
   },
   "scripts": {
+    "build": "echo 'No build steps required'",
     "commit": "git-cz",
     "dedup": "yarn-deduplicate",
     "lint": "eslint . --ext .js,.ts --max-warnings=0",

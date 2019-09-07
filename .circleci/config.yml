@@ -41,7 +41,8 @@ jobs:
         <<: *defaults
         steps:
             - prep
-            - run: yarn
+            - run: yarn install
+            - run: yarn dedup
             - cache
 
     lint:

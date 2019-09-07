@@ -96,10 +96,10 @@ workflows:
                     - test
                     - build
                 # *
-                # Deploy job uses semantic-release which filters by branch
-                # it runs in dry mode when the branch does not match master
-                # which is useful for catching misconfiguration
-                # see: `yarn release`
+                # The deploy job uses semantic-release which filters by branch
+                # It runs in dry mode when the branch does not match master
+                # This is useful for catching release misconfigurations
+                # See: `yarn release`
                 # *
                 # filters:
                 #     branches:

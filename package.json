@@ -33,7 +33,8 @@
   "scripts": {
     "build": "echo 'No build steps required. When changing this remember to update @semantic-release/npm.'",
     "commit": "git-cz",
-    "dedup": "yarn-deduplicate",
+    "lock-check": "yarn-deduplicate --list --fail",
+    "lock-dedup": "yarn-deduplicate",
     "lint": "eslint . --ext .js,.ts --max-warnings=0",
     "release": "semantic-release",
     "test": "jest",
@@ -57,7 +58,7 @@
       "yarn test-modified"
     ],
     "yarn.lock": [
-      "yarn dedup --list --fail"
+      "yarn lock-check"
     ]
   },
   "husky": {

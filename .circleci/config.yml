@@ -42,7 +42,7 @@ jobs:
         steps:
             - prep
             - run: yarn install --frozen-lockfile --ci
-            - run: yarn dedup
+            - run: yarn lock-check
             - cache
 
     lint:

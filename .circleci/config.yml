@@ -41,7 +41,7 @@ jobs:
         <<: *defaults
         steps:
             - prep
-            - run: yarn install
+            - run: yarn install --frozen-lockfile --ci
             - run: yarn dedup
             - cache
 
@@ -79,7 +79,7 @@ jobs:
 
 workflows:
     version: 2
-    build_test_lint:
+    blitz:
         jobs:
             - setup
             - lint:

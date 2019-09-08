@@ -63,6 +63,7 @@ jobs:
 
     report:
         <<: *defaults
+        working_directory: ~/repo/artifacts
         steps:
             - prep
             - run: yarn report-coverage

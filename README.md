@@ -1,5 +1,7 @@
 # semantic-release-firefox-add-on
 
+[![CircleCI](https://circleci.com/gh/tophat/semantic-release-firefox-add-on.svg?style=svg)](https://circleci.com/gh/tophat/semantic-release-firefox-add-on)
+
 ## Overview
 
 This package provides a set of [`semantic-release`][semantic-release] plugins for you to easily publish Firefox add ons automatically. Mozilla requires that even self-distributed packages are signed through the add on store. Given a built package, it will write the correct version number into `manifest.json` and upload the dist folder to the add on store. The package will be validated by Mozilla, and if valid, a signed distribution will be returned and downloaded into the artifacts folder.

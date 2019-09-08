@@ -56,6 +56,18 @@ jobs:
         steps:
             - prep
             - run: yarn test-coverage
+            - persist_to_workspace:
+                root: ~/repo
+                paths:
+                  - ./artifacts
+
+    report:
+        <<: *defaults
+        steps:
+            - prep
+            - run: yarn report-coverage
+            - attach_workspace:
+                at: ~/repo
             - store_test_results:
                 path: ./artifacts/coverage
 
@@ -90,6 +102,9 @@ workflows:
             - test:
                 requires:
                     - setup
+            - report:
+                requires:
+                    - test
             - build:
                 requires:
                     - setup

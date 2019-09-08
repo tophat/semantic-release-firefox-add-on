@@ -11,6 +11,8 @@
     "web-ext": "^3.1.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
     "@tophat/commitizen-adapter": "^0.0.11",
     "@tophat/commitlint-config": "^0.1.2",
     "@tophat/eslint-config": "^0.1.4",
@@ -19,6 +21,7 @@
     "commitlint": "^8.1.0",
     "eslint": "^6.3.0",
     "eslint-config-prettier": "^6.2.0",
+    "eslint-plugin-jest": "^22.17.0",
     "eslint-plugin-prettier": "^3.1.0",
     "husky": "^3.0.5",
     "jest": "^24.9.0",
@@ -28,13 +31,15 @@
     "yarn-deduplicate": "^1.1.1"
   },
   "scripts": {
+    "build": "mkdir -p artifacts; echo 'When changing this remember to update @semantic-release/npm.'",
     "commit": "git-cz",
-    "dedup": "yarn-deduplicate",
+    "lock-check": "yarn-deduplicate --list --fail",
+    "lock-dedup": "yarn-deduplicate",
     "lint": "eslint . --ext .js,.ts --max-warnings=0",
     "release": "semantic-release",
     "test": "jest",
     "test-watch": "jest --watch",
-    "test-coverage": "jest --ci --coverage",
+    "test-coverage": "jest --ci --coverage --coverageDirectory artifacts",
     "test-modified": "jest --bail --findRelatedTests"
   },
   "commitlint": {
@@ -51,6 +56,9 @@
     "*.{js,ts}": [
       "yarn lint",
       "yarn test-modified"
+    ],
+    "yarn.lock": [
+      "yarn lock-check"
     ]
   },
   "husky": {
@@ -58,5 +66,14 @@
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
       "pre-commit": "lint-staged"
     }
+  },
+  "release": {
+    "dryRun": true,
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/github",
+      "@semantic-release/npm"
+    ]
   }
 }

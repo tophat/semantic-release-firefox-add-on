@@ -41,7 +41,7 @@
     "report-coverage": "codecov",
     "test": "jest",
     "test-watch": "jest --watch",
-    "test-coverage": "jest --ci --coverage",
+    "test-coverage": "jest --ci --coverage --coverageDirectory artifacts/coverage",
     "test-modified": "jest --bail --findRelatedTests"
   },
   "commitlint": {

@@ -59,18 +59,17 @@ jobs:
             - persist_to_workspace:
                 root: ~/repo
                 paths:
-                  - ./artifacts
+                  - ./coverage
 
     report:
         <<: *defaults
-        working_directory: ~/repo/artifacts
         steps:
             - prep
             - run: yarn report-coverage
             - attach_workspace:
                 at: ~/repo
             - store_test_results:
-                path: ./artifacts/coverage
+                path: ./coverage
 
     build:
         <<: *defaults

@@ -57,7 +57,7 @@ jobs:
             - prep
             - run: yarn test-coverage
             - store_test_results:
-                path: ./artifacts/reports/tests
+                path: ./artifacts/coverage
 
     build:
         <<: *defaults

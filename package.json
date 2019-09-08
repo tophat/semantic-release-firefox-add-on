@@ -17,6 +17,7 @@
     "@tophat/commitlint-config": "^0.1.2",
     "@tophat/eslint-config": "^0.1.4",
     "babel-eslint": "^10.0.2",
+    "codecov": "^3.5.0",
     "commitizen": "^4.0.3",
     "commitlint": "^8.1.0",
     "eslint": "^6.3.0",
@@ -37,9 +38,10 @@
     "lock-dedup": "yarn-deduplicate",
     "lint": "eslint . --ext .js,.ts --max-warnings=0",
     "release": "semantic-release",
+    "report-coverage": "codecov",
     "test": "jest",
     "test-watch": "jest --watch",
-    "test-coverage": "jest --ci --coverage --coverageDirectory artifacts",
+    "test-coverage": "jest --ci --coverage --coverageDirectory artifacts/coverage",
     "test-modified": "jest --bail --findRelatedTests"
   },
   "commitlint": {

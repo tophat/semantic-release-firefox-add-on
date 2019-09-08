@@ -65,9 +65,9 @@ jobs:
         <<: *defaults
         steps:
             - prep
-            - run: yarn report-coverage
             - attach_workspace:
                 at: ~/repo
+            - run: yarn report-coverage
             - store_test_results:
                 path: ./artifacts/coverage
 

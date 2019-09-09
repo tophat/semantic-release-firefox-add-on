@@ -34,7 +34,8 @@ This package export the following plugins:
 ### `verifyConditions`
 
 Verify the following:
-- That environment variables are set for Add On store authentication 
+
+- That environment variables are set for Add On store authentication
 - That an extensionId was specified in the configuration
 - That the source directory is built and that we can locate the manifest.json file within the source directory
 
@@ -82,7 +83,7 @@ Creates an unsigned XPI file out of the source directory and uploads it to the M
 
 _You don't really have to add this section yourself! Simply use [all-contributors](https://allcontributors.org/) by adding comments in your PRs like so:_
 
-```
+```text
 @all-contributors please add <username> for <contribution type>
 ```
 

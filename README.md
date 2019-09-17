@@ -7,6 +7,8 @@
 
 ## Overview
 
+<img align="right" width="200" height="200" src="https://user-images.githubusercontent.com/2528959/65012473-74312900-d8e5-11e9-8cf7-ab575690ce32.png" alt="Logo">
+
 This package provides a set of [`semantic-release`][semantic-release] plugins for you to easily publish Firefox add ons automatically. Mozilla requires that even self-distributed packages are signed through the add on store. Given a built package, it will write the correct version number into `manifest.json` and upload the dist folder to the add on store. The package will be validated by Mozilla, and if valid, a signed distribution will be returned and downloaded into the artifacts folder.
 
 ## Motivation
@@ -100,7 +102,8 @@ Follow the [contributing guide](docs/contributing.md).
 <!-- prettier-ignore-end -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
-_Add more contributors using [all-contributors](https://allcontributors.org/) by adding comments in PRs:_
+_Add more contributors using [all-contributors](https://allcontributors.org/)_
+_by adding comments in PRs:_
 
 ```text
 @all-contributors please add <username> for <contribution type>

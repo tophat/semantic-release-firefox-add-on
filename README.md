@@ -94,7 +94,7 @@ _You don't really have to add this section yourself! Simply use [all-contributor
 <table>
   <tr>
     <td align="center"><a href="https://github.com/dbasilio"><img src="https://avatars0.githubusercontent.com/u/8311284?v=4" width="100px;" alt="Daniel Basilio"/><br /><sub><b>Daniel Basilio</b></sub></a><br /><a href="https://github.com/tophat/semantic-release-firefox-add-on/commits?author=dbasilio" title="Code">💻</a> <a href="https://github.com/tophat/semantic-release-firefox-add-on/commits?author=dbasilio" title="Documentation">📖</a> <a href="#maintenance-dbasilio" title="Maintenance">🚧</a> <a href="#ideas-dbasilio" title="Ideas, Planning, & Feedback">🤔</a> <a href="#review-dbasilio" title="Reviewed Pull Requests">👀</a></td>
-    <td align="center"><a href="http://emmanuel.ogbizi.com"><img src="https://avatars0.githubusercontent.com/u/2528959?v=4" width="100px;" alt="Emmanuel Ogbizi"/><br /><sub><b>Emmanuel Ogbizi</b></sub></a><br /><a href="https://github.com/tophat/semantic-release-firefox-add-on/commits?author=iamogbz" title="Code">💻</a> <a href="https://github.com/tophat/semantic-release-firefox-add-on/commits?author=iamogbz" title="Documentation">📖</a></td>
+    <td align="center"><a href="http://emmanuel.ogbizi.com"><img src="https://avatars0.githubusercontent.com/u/2528959?v=4" width="100px;" alt="Emmanuel Ogbizi"/><br /><sub><b>Emmanuel Ogbizi</b></sub></a><br /><a href="https://github.com/tophat/semantic-release-firefox-add-on/commits?author=iamogbz" title="Code">💻</a> <a href="https://github.com/tophat/semantic-release-firefox-add-on/commits?author=iamogbz" title="Documentation">📖</a> <a href="#design-iamogbz" title="Design">🎨</a></td>
   </tr>
 </table>
 

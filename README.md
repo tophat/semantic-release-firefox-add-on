@@ -3,6 +3,7 @@
 [![CircleCI](https://circleci.com/gh/tophat/semantic-release-firefox-add-on.svg?style=svg)](https://circleci.com/gh/tophat/semantic-release-firefox-add-on)
 [![npm version](https://img.shields.io/npm/v/semantic-release-firefox-add-on.svg)](https://badge.fury.io/js/semantic-release-firefox-add-on)
 [![codecov](https://codecov.io/gh/tophat/semantic-release-firefox-add-on/branch/master/graph/badge.svg)](https://codecov.io/gh/tophat/semantic-release-firefox-add-on)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 
 ## Overview
 
@@ -21,7 +22,7 @@ should be installed as one of your project's `devDependencies`:
 npm install --save-dev semantic-release-firefox-add-on
 ```
 
-## Mozilla Add On authentication
+### Mozilla Add On authentication
 
 You will need to get two parameters from the Add On store: an `API Key`, and a `Secret Key`. For more information on how to get those parameters and how to set the environment variables which are required in order for this plugin to work properly, read [this guide](https://addons-server.readthedocs.io/en/latest/topics/api/auth.html#access-credentials).
 
@@ -79,15 +80,31 @@ Creates an unsigned XPI file out of the source directory and uploads it to the M
 
 - `artifactsDir`: The location to store the signed XPI file when it is returned from Mozilla. Defaults to `./artifacts`.
 
-## Contributors
+## Contribution
 
-_You don't really have to add this section yourself! Simply use [all-contributors](https://allcontributors.org/) by adding comments in your PRs like so:_
+Follow the [contributing guide](docs/contributing.md).
+
+### Contributors
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/dbasilio"><img src="https://avatars0.githubusercontent.com/u/8311284?v=4" width="100px;" alt="Daniel Basilio"/><br /><sub><b>Daniel Basilio</b></sub></a><br /><a href="https://github.com/tophat/semantic-release-firefox-add-on/commits?author=dbasilio" title="Code">💻</a> <a href="https://github.com/tophat/semantic-release-firefox-add-on/commits?author=dbasilio" title="Documentation">📖</a> <a href="#maintenance-dbasilio" title="Maintenance">🚧</a> <a href="#ideas-dbasilio" title="Ideas, Planning, & Feedback">🤔</a> <a href="#review-dbasilio" title="Reviewed Pull Requests">👀</a></td>
+    <td align="center"><a href="http://emmanuel.ogbizi.com"><img src="https://avatars0.githubusercontent.com/u/2528959?v=4" width="100px;" alt="Emmanuel Ogbizi"/><br /><sub><b>Emmanuel Ogbizi</b></sub></a><br /><a href="https://github.com/tophat/semantic-release-firefox-add-on/commits?author=iamogbz" title="Code">💻</a> <a href="https://github.com/tophat/semantic-release-firefox-add-on/commits?author=iamogbz" title="Documentation">📖</a> <a href="#design-iamogbz" title="Design">🎨</a> <a href="#infra-iamogbz" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+_Add more contributors using [all-contributors](https://allcontributors.org/) by adding comments in PRs:_
 
 ```text
 @all-contributors please add <username> for <contribution type>
 ```
-
-_Find out more about All-Contributors on their website!_
 
 [npm]: https://www.npmjs.com/
 [node]: https://nodejs.org

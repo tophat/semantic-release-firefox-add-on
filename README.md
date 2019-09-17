@@ -22,7 +22,7 @@ should be installed as one of your project's `devDependencies`:
 npm install --save-dev semantic-release-firefox-add-on
 ```
 
-## Mozilla Add On authentication
+### Mozilla Add On authentication
 
 You will need to get two parameters from the Add On store: an `API Key`, and a `Secret Key`. For more information on how to get those parameters and how to set the environment variables which are required in order for this plugin to work properly, read [this guide](https://addons-server.readthedocs.io/en/latest/topics/api/auth.html#access-credentials).
 
@@ -80,13 +80,11 @@ Creates an unsigned XPI file out of the source directory and uploads it to the M
 
 - `artifactsDir`: The location to store the signed XPI file when it is returned from Mozilla. Defaults to `./artifacts`.
 
-## Contributors
+## Contribution
 
-_You don't really have to add this section yourself! Simply use [all-contributors](https://allcontributors.org/) by adding comments in your PRs like so:_
+Follow the [contributing guide](docs/contributing.md).
 
-```text
-@all-contributors please add <username> for <contribution type>
-```
+### Contributors
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
@@ -102,7 +100,11 @@ _You don't really have to add this section yourself! Simply use [all-contributor
 <!-- prettier-ignore-end -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
-_Find out more about All-Contributors on their website!_
+_Add more contributors using [all-contributors](https://allcontributors.org/) by adding comments in PRs:_
+
+```text
+@all-contributors please add <username> for <contribution type>
+```
 
 [npm]: https://www.npmjs.com/
 [node]: https://nodejs.org

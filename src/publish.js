@@ -1,5 +1,6 @@
 const fs = require('fs')
 const path = require('path')
+
 const webExt = require('web-ext').default
 
 const { verifyConfig } = require('./utils')

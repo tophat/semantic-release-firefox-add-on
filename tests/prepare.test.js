@@ -1,6 +1,6 @@
 const { fs, vol } = require('memfs')
 
-const { prepare } = require('../src/prepare')
+const { prepare } = require('../src')
 
 describe('prepare', () => {
     const mockOptions = {

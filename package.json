@@ -11,6 +11,7 @@
     "web-ext": "^4.0.0"
   },
   "peerDependencies": {
+    "aggregate-error": "^3.0.0",
     "semantic-release": "^16.0.0"
   },
   "devDependencies": {
@@ -19,6 +20,7 @@
     "@tophat/commitizen-adapter": "^0.0.11",
     "@tophat/commitlint-config": "^0.1.2",
     "@tophat/eslint-config": "^0.4.0",
+    "aggregate-error": "^3.0.1",
     "all-contributors-cli": "^6.9.1",
     "babel-eslint": "^10.0.2",
     "codecov": "^3.5.0",

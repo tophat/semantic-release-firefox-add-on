@@ -1,13 +1,9 @@
 version: 2.1
 
-# Defaults: shared across jobs
-
 defaults: &defaults
     docker:
         - image: circleci/node:latest
     working_directory: ~/repo
-
-# Commands: reusable command steps that jobs can run
 
 commands:
   prep:
@@ -33,8 +29,6 @@ commands:
           paths:
             - ~/.yvm/
             - ./node_modules/
-
-# Jobs: tasks that your CI pipeline can do
 
 jobs:
     setup:
@@ -88,8 +82,6 @@ jobs:
                 at: ~/repo
             - run: yarn release
 
-# Workflows: stringing jobs together into a pipeline
-
 workflows:
     version: 2
     blitz:
@@ -112,13 +104,3 @@ workflows:
                     - lint
                     - test
                     - build
-                # *
-                # The deploy job uses semantic-release which filters by branch
-                # It runs in dry mode when the branch does not match master
-                # This is useful for catching release misconfigurations
-                # See: `yarn release`
-                # *
-                # filters:
-                #     branches:
-                #         only:
-                #             - master

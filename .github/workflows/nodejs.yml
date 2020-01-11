@@ -22,14 +22,14 @@ jobs:
         source ~/.yvm/yvm.sh
     - uses: actions/download-artifacts@v1
       with:
-        name: ${{ hashFiles(yarn.lock) }}
+        name: ${{   hashFiles('yarn.lock') }}
     - name: Install
       run: |
         yarn install --frozen-lockfile --ci
     - uses: actions/upload-artifacts@v1
       if: success()
       with:
-        name: ${{ hashFiles(yarn.lock) }}
+        name: ${{   hashFiles('yarn.lock') }}
         path: node_modules
     - name: Lint
       run: |
@@ -62,7 +62,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - uses: actions/download-artifacts@v1
       with:
-        name: ${{ hashFiles(yarn.lock) }}
+        name: ${{   hashFiles('yarn.lock') }}
     - uses: actions/download-artifact@v1
       with:
         name: artifacts
@@ -88,7 +88,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - uses: actions/download-artifacts@v1
       with:
-        name: ${{ hashFiles(yarn.lock) }}
+        name: ${{   hashFiles('yarn.lock') }}
     - uses: actions/download-artifact@v1
       with:
         name: artifacts

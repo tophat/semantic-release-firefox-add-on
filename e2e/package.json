@@ -3,6 +3,9 @@
     "web-ext": "^4.0.0",
     "semantic-release": "^16.0.0"
   },
+  "scripts": {
+    "test-e2e": "../node_modules/.bin/semantic-release"
+  },
   "release": {
     "dryRun": true,
     "plugins": [

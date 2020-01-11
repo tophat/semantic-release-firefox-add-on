@@ -16,11 +16,21 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: Install
+    - name: Setup Yarn
       run: |
         curl -s https://raw.githubusercontent.com/tophat/yvm/v3.6.6/scripts/install.js | INSTALL_VERSION="v3.6.6" node
         source ~/.yvm/yvm.sh
+    - uses: actions/download-artifacts@v1
+      with:
+        name: ${{ hashFiles(yarn.lock) }}
+    - name: Install
+      run: |
         yarn install --frozen-lockfile --ci
+    - uses: actions/upload-artifacts@v1
+      if: success()
+      with:
+        name: ${{ hashFiles(yarn.lock) }}
+        path: node_modules
     - name: Lint
       run: |
         yarn lint
@@ -50,9 +60,9 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: Install
-      run: |
-        yarn install --frozen-lockfile --ci
+    - uses: actions/download-artifacts@v1
+      with:
+        name: ${{ hashFiles(yarn.lock) }}
     - uses: actions/download-artifact@v1
       with:
         name: artifacts
@@ -76,9 +86,9 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: Install
-      run: |
-        yarn install --frozen-lockfile --ci
+    - uses: actions/download-artifacts@v1
+      with:
+        name: ${{ hashFiles(yarn.lock) }}
     - uses: actions/download-artifact@v1
       with:
         name: artifacts

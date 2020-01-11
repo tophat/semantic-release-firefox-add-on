@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "web-ext": "^4.0.0",
+    "semantic-release": "^16.0.0"
+  },
+  "release": {
+    "dryRun": true,
+    "plugins": [
+      [
+        "../src/index.js",
+        {
+          "artifactsDir": "./",
+          "extensionId": "{01234567-abcd-6789-cdef-0123456789ef}",
+          "targetXpi": "extension.xpi"
+        }
+      ]
+    ]
+  }
+}

@@ -21,9 +21,7 @@ const prepare = (options, { nextRelease, logger }) => {
         jsonManifest.version = version
         manifest = JSON.stringify(jsonManifest, null, 2)
     } catch (e) {
-        throw new Error(
-            'Failed to parse manifest.json from dist folder into JSON',
-        )
+        throw new Error('Failed to parse manifest.json into JSON')
     }
 
     try {
@@ -34,7 +32,7 @@ const prepare = (options, { nextRelease, logger }) => {
         )
     }
 
-    logger.log('Wrote version %s to %s', version, manifestPath)
+    logger.log('Wrote version %s to %s', version, normalizedManifestPath)
 }
 
 module.exports = {

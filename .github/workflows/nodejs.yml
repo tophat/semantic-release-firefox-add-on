@@ -20,9 +20,6 @@ jobs:
       run: |
         curl -s https://raw.githubusercontent.com/tophat/yvm/v3.6.6/scripts/install.js | INSTALL_VERSION="v3.6.6" node
         source ~/.yvm/yvm.sh
-    - uses: actions/download-artifact@v1
-      with:
-        name: ${{ hashFiles('yarn.lock') }}
     - name: Install
       run: |
         yarn install --frozen-lockfile --ci

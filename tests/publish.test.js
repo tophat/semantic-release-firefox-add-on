@@ -3,7 +3,7 @@ const { default: webExt } = require('web-ext')
 
 const { publish } = require('../src')
 
-describe('prepare', () => {
+describe('publish', () => {
     const extensionId = '{01234567-abcd-6789-cdef-0123456789ef}'
     const targetXpi = 'target-extension.xpi'
     const mockOptions = {

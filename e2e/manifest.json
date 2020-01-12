@@ -1,0 +1,6 @@
+{
+    "manifest_version": 2,
+    "name": "Mock Manifest",
+    "description": "stub file to run e2e test",
+    "version": "0.0.0"
+}

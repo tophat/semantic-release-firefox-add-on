@@ -4,7 +4,7 @@
     "semantic-release": "^16.0.0"
   },
   "scripts": {
-    "test-e2e": "../node_modules/.bin/semantic-release"
+    "test-e2e": "FIREFOX_API_KEY='dummy' FIREFOX_SECRET_KEY='dummy' ../node_modules/.bin/semantic-release"
   },
   "release": {
     "dryRun": true,
@@ -13,6 +13,7 @@
         "../src/index.js",
         {
           "artifactsDir": "./",
+          "sourceDir": "./",
           "extensionId": "{01234567-abcd-6789-cdef-0123456789ef}",
           "targetXpi": "extension.xpi"
         }

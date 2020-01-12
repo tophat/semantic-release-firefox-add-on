@@ -32,9 +32,11 @@
         "code",
         "doc",
         "design",
-        "infra"
+        "infra",
+        "test"
       ]
     }
   ],
-  "contributorsPerLine": 7
+  "contributorsPerLine": 7,
+  "skipCi": true
 }

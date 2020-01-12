@@ -1,7 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 
-const { throwErrors, verifyConfig } = require('./utils')
+const { maybeThrowErrors, verifyConfig } = require('./utils')
 
 const verifyConditions = options => {
     const verified = verifyConfig(options)
@@ -31,7 +31,7 @@ const verifyConditions = options => {
             `${manifestPath} was not found in ${sourceDir}, dist folder needs to exist to run`,
         )
     }
-    throwErrors(errors)
+    maybeThrowErrors(errors)
 }
 
 module.exports = {

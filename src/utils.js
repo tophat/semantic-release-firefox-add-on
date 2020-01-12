@@ -1,6 +1,8 @@
-const throwErrors = errors => {
+const AggregateError = require('aggregate-error')
+
+const maybeThrowErrors = errors => {
     if (errors.length > 0) {
-        throw new Error(errors.join('\n'))
+        throw new AggregateError(errors)
     }
 }
 
@@ -19,11 +21,11 @@ const verifyConfig = (options, required = []) => {
             errors.push(`${prop} is missing from the options`)
         }
     })
-    throwErrors(errors)
+    maybeThrowErrors(errors)
     return mergedOptions
 }
 
 module.exports = {
-    throwErrors,
+    maybeThrowErrors,
     verifyConfig,
 }

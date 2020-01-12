@@ -10,12 +10,17 @@
   "dependencies": {
     "web-ext": "^4.0.0"
   },
+  "peerDependencies": {
+    "aggregate-error": "^3.0.0",
+    "semantic-release": "^16.0.0"
+  },
   "devDependencies": {
     "@babel/core": "^7.6.0",
     "@babel/preset-env": "^7.6.0",
     "@tophat/commitizen-adapter": "^0.0.11",
     "@tophat/commitlint-config": "^0.1.2",
     "@tophat/eslint-config": "^0.4.0",
+    "aggregate-error": "^3.0.1",
     "all-contributors-cli": "^6.9.1",
     "babel-eslint": "^10.0.2",
     "codecov": "^3.5.0",
@@ -28,9 +33,11 @@
     "eslint-plugin-prettier": "^3.1.0",
     "husky": "^4.0.1",
     "jest": "^24.9.0",
+    "jest-mock-props": "^1.7.2",
     "lint-staged": "^9.2.5",
+    "memfs": "^3.0.3",
     "prettier": "^1.18.2",
-    "semantic-release": "^15.13.18",
+    "semantic-release": "^16.0.1",
     "yarn-deduplicate": "^1.1.1"
   },
   "scripts": {
@@ -70,6 +77,11 @@
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
       "pre-commit": "lint-staged"
     }
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "./tests/setup.js"
+    ]
   },
   "release": {
     "dryRun": false,

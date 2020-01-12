@@ -19,7 +19,7 @@ const publish = async options => {
         channel,
         sourceDir,
         targetXpi,
-    } = verifyConfig(options, ['extensionId'])
+    } = verifyConfig(options, ['extensionId', 'targetXpi'])
 
     const { FIREFOX_API_KEY, FIREFOX_SECRET_KEY } = process.env
     const { success, downloadedFiles } = await webExt.cmd.sign({

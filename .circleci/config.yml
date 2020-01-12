@@ -55,6 +55,7 @@ jobs:
         steps:
             - prep
             - run: yarn test-coverage
+            - run: cd e2e && yarn test-e2e
             - persist_to_workspace:
                 root: ~/repo
                 paths:

@@ -11,7 +11,9 @@ const verifyConditions = options => {
 
     Object.keys(requiredEnvs).forEach(envVarName => {
         if (!process.env[envVarName]) {
-            errors.push(`${envVarName} is missing from the environment`)
+            errors.push(
+                `${envVarName} is missing from the environment. ${requiredEnvs[envVarName]}`,
+            )
         }
     })
 
@@ -26,7 +28,7 @@ const verifyConditions = options => {
     const manifestExists = fs.existsSync(path.join(sourceDir, manifestPath))
     if (!manifestExists) {
         errors.push(
-            `${manifestPath} was not found in ${sourceDir}, path does not exist`,
+            `${manifestPath} was not found in ${sourceDir}, path does not exist.`,
         )
     }
     maybeThrowErrors(errors)

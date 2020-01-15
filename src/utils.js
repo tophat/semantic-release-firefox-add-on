@@ -13,7 +13,7 @@ const defaultOptions = {
     sourceDir: 'dist',
 }
 
-const verifyConfig = (options, required = []) => {
+const verifyOptions = (options, required = []) => {
     const errors = []
     const mergedOptions = { ...defaultOptions, ...options }
     required.forEach(prop => {
@@ -27,5 +27,5 @@ const verifyConfig = (options, required = []) => {
 
 module.exports = {
     maybeThrowErrors,
-    verifyConfig,
+    verifyOptions,
 }

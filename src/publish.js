@@ -3,7 +3,7 @@ const path = require('path')
 
 const webExt = require('web-ext').default
 
-const { verifyConfig } = require('./utils')
+const { verifyOptions } = require('./utils')
 
 const publish = async options => {
     // This will create an unsigned xpi from sourceDir folder (dist) it will
@@ -19,7 +19,7 @@ const publish = async options => {
         channel,
         sourceDir,
         targetXpi,
-    } = verifyConfig(options, ['extensionId', 'targetXpi'])
+    } = verifyOptions(options, ['extensionId', 'targetXpi'])
 
     const { FIREFOX_API_KEY, FIREFOX_SECRET_KEY } = process.env
     const { success, downloadedFiles } = await webExt.cmd.sign({

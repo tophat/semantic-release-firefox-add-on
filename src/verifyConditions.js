@@ -1,34 +1,34 @@
 const fs = require('fs')
 const path = require('path')
 
-const { maybeThrowErrors, verifyConfig } = require('./utils')
+const { requiredEnvs, requiredOptions } = require('./constants')
+const { maybeThrowErrors, verifyOptions } = require('./utils')
 
 const verifyConditions = options => {
-    const verified = verifyConfig(options)
-    const { extensionId, sourceDir, manifestPath, targetXpi } = verified
-    const { FIREFOX_API_KEY, FIREFOX_SECRET_KEY } = process.env
-
+    const verified = verifyOptions(options)
+    const { manifestPath, sourceDir } = verified
     const errors = []
-    if (!FIREFOX_API_KEY) {
-        errors.push('FIREFOX_API_KEY is missing from the environment')
-    }
-    if (!FIREFOX_SECRET_KEY) {
-        errors.push('FIREFOX_SECRET_KEY is missing from the environment')
-    }
-    if (!extensionId) {
-        errors.push(
-            'No extensionId was specified in package.json, this would create a new extension instead of a new version.',
-        )
-    }
-    if (!targetXpi) {
-        errors.push(
-            'No targetXpi was specified in package.json, this would leave the xpi file unnamed when it is returned from mozilla.',
-        )
-    }
+
+    Object.keys(requiredEnvs).forEach(envVarName => {
+        if (!process.env[envVarName]) {
+            errors.push(
+                `${envVarName} is missing from the environment. ${requiredEnvs[envVarName]}`,
+            )
+        }
+    })
+
+    Object.keys(requiredOptions).forEach(option => {
+        if (!verified[option]) {
+            errors.push(
+                `No ${option} was specified in package.json. ${requiredOptions[option]}`,
+            )
+        }
+    })
+
     const manifestExists = fs.existsSync(path.join(sourceDir, manifestPath))
     if (!manifestExists) {
         errors.push(
-            `${manifestPath} was not found in ${sourceDir}, dist folder needs to exist to run`,
+            `${manifestPath} was not found in ${sourceDir}, path does not exist.`,
         )
     }
     maybeThrowErrors(errors)

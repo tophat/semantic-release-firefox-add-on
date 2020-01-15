@@ -42,7 +42,12 @@ Verify the following:
 - That an extensionId was specified in the configuration
 - That the source directory is built and that we can locate the manifest.json file within the source directory
 
-For more information on the environment variables, see [Firefox authentication][firefox-authentication])
+### Environment variables
+
+- `FIREFOX_API_KEY`: **REQUIRED** Mozilla add-on server api key used in webext sign command
+- `FIREFOX_SECRET_KEY`: **REQUIRED** Mozilla add-on server api secret used in webext signing
+
+For more information on the source of these values, see [Mozilla Add On authentication](#mozilla-add-on-authentication)
 
 #### `verifyConditions` parameters
 

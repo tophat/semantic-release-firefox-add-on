@@ -1,16 +1,11 @@
 const AggregateError = require('aggregate-error')
 
+const { defaultOptions } = require('./constants')
+
 const maybeThrowErrors = errors => {
     if (errors.length > 0) {
         throw new AggregateError(errors)
     }
-}
-
-const defaultOptions = {
-    artifactsDir: './artifacts',
-    channel: 'unlisted',
-    manifestPath: 'manifest.json',
-    sourceDir: 'dist',
 }
 
 const verifyOptions = (options, required = []) => {

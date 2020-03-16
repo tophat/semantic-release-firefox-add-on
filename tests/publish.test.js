@@ -28,7 +28,6 @@ describe('publish', () => {
     })
     beforeEach(() => {
         vol.fromJSON({
-            '/tmp': {},
             [mockOptions.artifactsDir]: {},
             [path.join(
                 mockOptions.sourceDir,

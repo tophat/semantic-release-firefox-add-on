@@ -1,3 +1,6 @@
-const { fs } = require('memfs')
+const fs = jest.requireActual('fs')
 
-module.exports = fs
+const { ufs } = require('unionfs')
+const { vol } = require('memfs')
+
+module.exports = ufs.use(fs).use(vol)

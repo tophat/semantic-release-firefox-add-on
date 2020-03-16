@@ -5,14 +5,10 @@ const { ufs } = require('unionfs')
 
 const { createWriteStream } = ufs
 ufs.createWriteStream = (...args) => {
-    const filePath = `${args[0]}`
     for (const _fs of ufs.fss) {
         try {
-            if (
-                _fs.existsSync(filePath) ||
-                _fs.existsSync(path.dirname(filePath))
-            ) {
-                return _fs.createWriteStream(...args)
+            if (_fs.existsSync(path.dirname(`${args[0]}`))) {
+                return _fs.createWriteStream(args[0])
             }
         } catch (e) {
             continue

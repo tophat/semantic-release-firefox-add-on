@@ -35,7 +35,7 @@ const publish = async options => {
         return result
     }
 
-    const { success, downloadedFiles } = await webExt.cmd.sign(
+    const { downloadedFiles } = await webExt.cmd.sign(
         {
             apiKey: FIREFOX_API_KEY,
             apiSecret: FIREFOX_SECRET_KEY,
@@ -46,11 +46,6 @@ const publish = async options => {
         },
         { signAddon },
     )
-    if (!success) {
-        throw new Error(
-            'Signing the extension failed. See the console output from web-ext sign for the validation link',
-        )
-    }
     const [xpiFile] = downloadedFiles
     fs.renameSync(
         xpiFile ? path.join(artifactsDir, xpiFile) : unsignedXpiPath,

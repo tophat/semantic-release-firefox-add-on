@@ -1,20 +1,39 @@
+const path = require('path')
+
 const { fs, vol } = require('memfs')
-const { default: webExt } = require('web-ext')
+const signAddon = require('sign-addon')
 
 const { publish } = require('../src')
 
 describe('publish', () => {
+    const mockManifestJSON = {
+        manifest_version: 2,
+        name: 'Mock Extension',
+        version: '0.0.1',
+    }
     const extensionId = '{01234567-abcd-6789-cdef-0123456789ef}'
     const targetXpi = 'target-extension.xpi'
     const mockOptions = {
         artifactsDir: 'mock_artifacts',
-        manifestPath: 'mock_manifest.json',
+        manifestPath: 'manifest.json',
         sourceDir: 'mock_source',
     }
     const completeOptions = { extensionId, targetXpi, ...mockOptions }
+    const mockAddonSignFailed = { success: false }
+    const mockAddonSignSuccess = { success: true, id: extensionId }
 
     beforeAll(() => {
         jest.spyOn(console, 'log')
+    })
+    beforeEach(() => {
+        vol.fromJSON({
+            '/tmp': {},
+            mock_artifacts: {},
+            [path.join(
+                mockOptions.sourceDir,
+                mockOptions.manifestPath,
+            )]: JSON.stringify(mockManifestJSON),
+        })
     })
     afterEach(() => {
         vol.reset()
@@ -37,22 +56,36 @@ describe('publish', () => {
     })
 
     it('raises error if signing unsuccessful', () => {
-        webExt.cmd.sign.mockResolvedValueOnce({ success: false })
+        signAddon.mockResolvedValueOnce(mockAddonSignFailed)
         return expect(publish(completeOptions)).rejects.toThrow(
-            'Signing the extension failed',
+            'The extension could not be signed',
         )
+    })
+
+    it('uses unsigned xpi file when auto signing unlisted fails', async () => {
+        signAddon.mockResolvedValueOnce({
+            ...mockAddonSignFailed,
+            errorCode: 'ADDON_NOT_AUTO_SIGNED',
+        })
+        const targetXpiPath = path.join(mockOptions.artifactsDir, targetXpi)
+        expect(fs.existsSync(targetXpiPath)).toBe(false)
+        await publish(completeOptions)
+        expect(fs.existsSync(targetXpiPath)).toBe(true)
     })
 
     it('renames downloaded file to target xpi', async () => {
         const downloadedFile = 'mock_downloaded.xpi'
         vol.fromJSON({
-            [`${mockOptions.artifactsDir}/${downloadedFile}`]: 'some fake signed xpi',
+            [path.join(
+                mockOptions.artifactsDir,
+                downloadedFile,
+            )]: 'some fake signed xpi',
         })
-        webExt.cmd.sign.mockResolvedValueOnce({
-            success: true,
+        signAddon.mockResolvedValueOnce({
+            ...mockAddonSignSuccess,
             downloadedFiles: [downloadedFile],
         })
-        const targetXpiPath = `${mockOptions.artifactsDir}/${targetXpi}`
+        const targetXpiPath = path.join(mockOptions.artifactsDir, targetXpi)
         expect(fs.existsSync(targetXpiPath)).toBe(false)
         await publish(completeOptions)
         expect(fs.existsSync(targetXpiPath)).toBe(true)

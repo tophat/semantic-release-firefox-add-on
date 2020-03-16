@@ -1,6 +1,7 @@
+const fs = require('fs')
 const path = require('path')
 
-const { fs, vol } = require('memfs')
+const { vol } = require('memfs')
 const signAddon = require('sign-addon')
 
 const { publish } = require('../src')
@@ -28,7 +29,7 @@ describe('publish', () => {
     beforeEach(() => {
         vol.fromJSON({
             '/tmp': {},
-            mock_artifacts: {},
+            [mockOptions.artifactsDir]: {},
             [path.join(
                 mockOptions.sourceDir,
                 mockOptions.manifestPath,

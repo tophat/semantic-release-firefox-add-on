@@ -2,7 +2,6 @@ const fs = require('fs')
 const path = require('path')
 
 const { vol } = require('memfs')
-const { outputFileSync } = require('fs-extra')
 const signAddon = require('sign-addon')
 
 const { publish } = require('../src')
@@ -34,13 +33,12 @@ describe('publish', () => {
         jest.spyOn(console, 'log')
         const { createWriteStream } = fs
         jest.spyOn(fs, 'createWriteStream').mockImplementation((...args) => {
-            outputFileSync(`${args[0]}`, null)
+            vol.fromJSON({ [`${args[0]}`]: '' })
             return createWriteStream(...args)
         })
     })
     beforeEach(() => {
         vol.fromJSON({
-            [mockOptions.artifactsDir]: {},
             [path.join(
                 mockOptions.sourceDir,
                 mockOptions.manifestPath,

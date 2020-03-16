@@ -73,7 +73,7 @@ This plugin requires some parameters to be set, so be sure to check below and fi
 
 ### `publish`
 
-Creates an unsigned XPI file out of the source directory and uploads it to the Mozilla Add On, using the web-ext sign command. The output from the sign command will be passed through to the console. If the package is validated and signed, it will downloaded the signed XPI file and store it in the artifacts directory under the specified file name.
+Creates an unsigned XPI file out of the source directory and uploads it to the Mozilla Add On, using the web-ext sign command. The output from the sign command will be passed through to the console. If the package is validated and signed, it will download the signed XPI file and store it in the artifacts directory under the specified file name. If the package is validated but not signed (including the case where manual review is required), it will store the unsigned XPI file in the artifacts directory.
 
 #### `publish` parameters
 

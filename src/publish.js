@@ -24,13 +24,16 @@ const publish = async options => {
 
     const { FIREFOX_API_KEY, FIREFOX_SECRET_KEY } = process.env
 
-    let unsignedXpiPath
     const signAddon = async params => {
-        unsignedXpiPath = params.xpiPath
+        const unsignedXpiFile = `unsigned-${targetXpi}`
+        fs.writeFileSync(
+            path.join(artifactsDir, unsignedXpiFile),
+            fs.readFileSync(params.xpiPath),
+        )
         const result = await defaultAddonSigner(params)
         if (!result.success && result.errorCode === 'ADDON_NOT_AUTO_SIGNED') {
             result.success = true
-            result.downloadedFiles = result.downloadedFiles || []
+            result.downloadedFiles = result.downloadedFiles || [unsignedXpiFile]
         }
         return result
     }
@@ -48,7 +51,7 @@ const publish = async options => {
     )
     const [xpiFile] = downloadedFiles
     fs.renameSync(
-        xpiFile ? path.join(artifactsDir, xpiFile) : unsignedXpiPath,
+        path.join(artifactsDir, xpiFile),
         path.join(artifactsDir, targetXpi),
     )
 }

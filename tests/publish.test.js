@@ -2,6 +2,7 @@ const fs = require('fs')
 const path = require('path')
 
 const { vol } = require('memfs')
+const { outputFileSync } = require('fs-extra')
 const signAddon = require('sign-addon')
 
 const { publish } = require('../src')
@@ -22,13 +23,23 @@ describe('publish', () => {
     const completeOptions = { extensionId, targetXpi, ...mockOptions }
     const mockAddonSignFailed = { success: false }
     const mockAddonSignSuccess = { success: true, id: extensionId }
+    const clearMockArtifacts = () => {
+        const actualFs = jest.requireActual('fs')
+        if (actualFs.existsSync(mockOptions.artifactsDir)) {
+            actualFs.rmdirSync(mockOptions.artifactsDir, { recursive: true })
+        }
+    }
 
     beforeAll(() => {
         jest.spyOn(console, 'log')
+        const { createWriteStream } = fs
+        jest.spyOn(fs, 'createWriteStream').mockImplementation((...args) => {
+            outputFileSync(`${args[0]}`, null)
+            return createWriteStream(...args)
+        })
     })
     beforeEach(() => {
         vol.fromJSON({
-            '/tmp': {},
             [mockOptions.artifactsDir]: {},
             [path.join(
                 mockOptions.sourceDir,
@@ -38,6 +49,7 @@ describe('publish', () => {
     })
     afterEach(() => {
         vol.reset()
+        clearMockArtifacts()
         jest.clearAllMocks()
     })
     afterAll(() => {

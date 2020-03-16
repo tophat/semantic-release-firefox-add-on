@@ -1,6 +1,11 @@
+const allowedChannels = {
+    LISTED: 'listed',
+    UNLISTED: 'unlisted',
+}
+
 const defaultOptions = {
     artifactsDir: './artifacts',
-    channel: 'unlisted',
+    channel: allowedChannels.UNLISTED,
     manifestPath: 'manifest.json',
     sourceDir: 'dist',
 }
@@ -18,6 +23,7 @@ const requiredEnvs = {
 }
 
 module.exports = {
+    allowedChannels,
     defaultOptions,
     requiredEnvs,
     requiredOptions,

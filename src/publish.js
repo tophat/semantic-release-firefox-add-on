@@ -4,6 +4,7 @@ const path = require('path')
 const webExt = require('web-ext').default
 const defaultAddonSigner = require('sign-addon')
 
+const { allowedChannels } = require('./constants')
 const { verifyOptions } = require('./utils')
 
 const publish = async options => {
@@ -31,7 +32,11 @@ const publish = async options => {
             fs.readFileSync(params.xpiPath),
         )
         const result = await defaultAddonSigner(params)
-        if (!result.success && result.errorCode === 'ADDON_NOT_AUTO_SIGNED') {
+        if (
+            channel === allowedChannels.LISTED &&
+            !result.success &&
+            result.errorCode === 'ADDON_NOT_AUTO_SIGNED'
+        ) {
             result.success = true
             result.downloadedFiles = result.downloadedFiles || [unsignedXpiFile]
         }

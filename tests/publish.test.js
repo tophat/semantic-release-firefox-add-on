@@ -16,6 +16,7 @@ describe('publish', () => {
     const targetXpi = 'target-extension.xpi'
     const mockOptions = {
         artifactsDir: 'mock_artifacts',
+        channel: 'unlisted',
         manifestPath: 'manifest.json',
         sourceDir: 'mock_source',
     }
@@ -61,31 +62,39 @@ describe('publish', () => {
         )
     })
 
-    it('raises error if signing unsuccessful', () => {
-        signAddon.mockResolvedValueOnce(mockAddonSignFailed)
+    it.each`
+        signCase                                               | signResults
+        ${'signing unsuccessful'}                              | ${mockAddonSignFailed}
+        ${'auto signing unsuccessful and channel is unlisted'} | ${{ ...mockAddonSignFailed, errorCode: 'ADDON_NOT_AUTO_SIGNED' }}
+    `('raises error if $signCase', ({ signResults }) => {
+        signAddon.mockResolvedValueOnce(signResults)
         return expect(publish(completeOptions)).rejects.toThrow(
             'The extension could not be signed',
         )
     })
 
-    it('uses unsigned xpi file when auto signing unlisted fails', async () => {
+    it('uses unsigned xpi if auto signing unsuccessful and channel is listed', async () => {
         signAddon.mockResolvedValueOnce({
             ...mockAddonSignFailed,
             errorCode: 'ADDON_NOT_AUTO_SIGNED',
         })
         const targetXpiPath = path.join(mockOptions.artifactsDir, targetXpi)
         expect(fs.existsSync(targetXpiPath)).toBe(false)
-        await publish(completeOptions)
+        await publish({
+            ...completeOptions,
+            channel: 'listed',
+        })
         expect(fs.existsSync(targetXpiPath)).toBe(true)
     })
 
     it('renames downloaded file to target xpi', async () => {
         const downloadedFile = 'mock_downloaded.xpi'
+        const mockFileContent = 'some fake signed xpi'
         vol.fromJSON({
             [path.join(
                 mockOptions.artifactsDir,
                 downloadedFile,
-            )]: 'some fake signed xpi',
+            )]: mockFileContent,
         })
         signAddon.mockResolvedValueOnce({
             ...mockAddonSignSuccess,
@@ -94,6 +103,8 @@ describe('publish', () => {
         const targetXpiPath = path.join(mockOptions.artifactsDir, targetXpi)
         expect(fs.existsSync(targetXpiPath)).toBe(false)
         await publish(completeOptions)
-        expect(fs.existsSync(targetXpiPath)).toBe(true)
+        expect(fs.readFileSync(targetXpiPath).toString()).toEqual(
+            mockFileContent,
+        )
     })
 })

@@ -31,11 +31,6 @@ describe('publish', () => {
 
     beforeAll(() => {
         jest.spyOn(console, 'log')
-        const { createWriteStream } = fs
-        jest.spyOn(fs, 'createWriteStream').mockImplementation((...args) => {
-            vol.fromJSON({ [`${args[0]}`]: '' })
-            return createWriteStream(...args)
-        })
     })
     beforeEach(() => {
         vol.fromJSON({

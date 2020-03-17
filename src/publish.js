@@ -4,6 +4,7 @@ const path = require('path')
 const webExt = require('web-ext').default
 const defaultAddonSigner = require('sign-addon')
 
+const { allowedChannels } = require('./constants')
 const { verifyOptions } = require('./utils')
 
 const publish = async options => {
@@ -24,18 +25,25 @@ const publish = async options => {
 
     const { FIREFOX_API_KEY, FIREFOX_SECRET_KEY } = process.env
 
-    let unsignedXpiPath
     const signAddon = async params => {
-        unsignedXpiPath = params.xpiPath
+        const unsignedXpiFile = `unsigned-${targetXpi}`
+        fs.writeFileSync(
+            path.join(artifactsDir, unsignedXpiFile),
+            fs.readFileSync(params.xpiPath),
+        )
         const result = await defaultAddonSigner(params)
-        if (!result.success && result.errorCode === 'ADDON_NOT_AUTO_SIGNED') {
+        if (
+            channel === allowedChannels.LISTED &&
+            !result.success &&
+            result.errorCode === 'ADDON_NOT_AUTO_SIGNED'
+        ) {
             result.success = true
-            result.downloadedFiles = result.downloadedFiles || []
+            result.downloadedFiles = result.downloadedFiles || [unsignedXpiFile]
         }
         return result
     }
 
-    const { success, downloadedFiles } = await webExt.cmd.sign(
+    const { downloadedFiles } = await webExt.cmd.sign(
         {
             apiKey: FIREFOX_API_KEY,
             apiSecret: FIREFOX_SECRET_KEY,
@@ -46,14 +54,9 @@ const publish = async options => {
         },
         { signAddon },
     )
-    if (!success) {
-        throw new Error(
-            'Signing the extension failed. See the console output from web-ext sign for the validation link',
-        )
-    }
     const [xpiFile] = downloadedFiles
     fs.renameSync(
-        xpiFile ? path.join(artifactsDir, xpiFile) : unsignedXpiPath,
+        path.join(artifactsDir, xpiFile),
         path.join(artifactsDir, targetXpi),
     )
 }

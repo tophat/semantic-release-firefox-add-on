@@ -1,2 +1,2 @@
 jest.mock('fs')
-jest.mock('web-ext')
+jest.mock('sign-addon')

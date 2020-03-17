@@ -1,4 +1,6 @@
-const { fs, vol } = require('memfs')
+const fs = require('fs')
+
+const { vol } = require('memfs')
 
 const { prepare } = require('../src')
 

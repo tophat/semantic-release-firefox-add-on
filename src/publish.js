@@ -26,11 +26,8 @@ const publish = async options => {
     const { FIREFOX_API_KEY, FIREFOX_SECRET_KEY } = process.env
 
     const signAddon = async params => {
-        const unsignedXpiFile = `unsigned-${targetXpi}`
-        fs.writeFileSync(
-            path.join(artifactsDir, unsignedXpiFile),
-            fs.readFileSync(params.xpiPath),
-        )
+        const unsignedXpiFile = path.join(artifactsDir, `unsigned-${targetXpi}`)
+        fs.writeFileSync(unsignedXpiFile, fs.readFileSync(params.xpiPath))
         const result = await defaultAddonSigner(params)
         if (
             channel === allowedChannels.LISTED &&
@@ -55,10 +52,7 @@ const publish = async options => {
         { signAddon },
     )
     const [xpiFile] = downloadedFiles
-    fs.renameSync(
-        path.join(artifactsDir, xpiFile),
-        path.join(artifactsDir, targetXpi),
-    )
+    fs.renameSync(xpiFile, path.join(artifactsDir, targetXpi))
 }
 
 module.exports = {

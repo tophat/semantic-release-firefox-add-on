@@ -90,15 +90,16 @@ describe('publish', () => {
     it('renames downloaded file to target xpi', async () => {
         const downloadedFile = 'mock_downloaded.xpi'
         const mockFileContent = 'some fake signed xpi'
+        const downloadedFilePath = path.join(
+            mockOptions.artifactsDir,
+            downloadedFile,
+        )
         vol.fromJSON({
-            [path.join(
-                mockOptions.artifactsDir,
-                downloadedFile,
-            )]: mockFileContent,
+            [downloadedFilePath]: mockFileContent,
         })
         signAddon.mockResolvedValueOnce({
             ...mockAddonSignSuccess,
-            downloadedFiles: [downloadedFile],
+            downloadedFiles: [downloadedFilePath],
         })
         const targetXpiPath = path.join(mockOptions.artifactsDir, targetXpi)
         expect(fs.existsSync(targetXpiPath)).toBe(false)

@@ -60,11 +60,11 @@ jobs:
                 paths:
                   - ./artifacts
 
-    test-e2e:
+    e2e:
         <<: *defaults
         steps:
             - prep
-            - run: make test-e2e-listed
+            - run: make -k test-e2e-listed
 
     report:
         <<: *defaults
@@ -107,7 +107,7 @@ workflows:
             - test:
                 requires:
                     - setup
-            - test-e2e:
+            - e2e:
                 requires:
                     - setup
             - report:
@@ -120,7 +120,7 @@ workflows:
                 requires:
                     - lint
                     - test
-                    - test-e2e
+                    - e2e
                     - build
                 # *
                 # The deploy job uses semantic-release which filters by branch

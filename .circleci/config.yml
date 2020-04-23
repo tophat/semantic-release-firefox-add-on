@@ -55,11 +55,16 @@ jobs:
         steps:
             - prep
             - run: yarn test-coverage
-            - run: cd e2e && yarn test-e2e
             - persist_to_workspace:
                 root: ~/repo
                 paths:
                   - ./artifacts
+
+    test-e2e:
+        <<: *defaults
+        steps:
+            - prep
+            - run: make test-e2e-listed
 
     report:
         <<: *defaults
@@ -102,6 +107,9 @@ workflows:
             - test:
                 requires:
                     - setup
+            - test-e2e:
+                requires:
+                    - setup
             - report:
                 requires:
                     - test
@@ -112,6 +120,7 @@ workflows:
                 requires:
                     - lint
                     - test
+                    - test-e2e
                     - build
                 # *
                 # The deploy job uses semantic-release which filters by branch

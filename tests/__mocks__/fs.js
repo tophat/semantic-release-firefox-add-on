@@ -18,3 +18,4 @@ ufs.createWriteStream = (...args) => {
 }
 
 module.exports = ufs.use(vol).use(fs)
+Object.assign(module.exports, { constants: fs.constants })

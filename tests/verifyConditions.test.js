@@ -1,9 +1,7 @@
 const { vol } = require('memfs')
-const mockProps = require('jest-mock-props')
+require('jest-mock-props').extend(jest)
 
 const { verifyConditions } = require('../src')
-
-mockProps.extend(jest)
 
 describe('verifyConditions', () => {
     const firefoxApiKeySpy = jest.spyOnProp(process.env, 'FIREFOX_API_KEY')

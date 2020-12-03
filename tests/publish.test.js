@@ -2,7 +2,7 @@ const fs = require('fs')
 const path = require('path')
 
 const { vol } = require('memfs')
-const signAddon = require('sign-addon').default
+const { signAddon } = require('sign-addon')
 
 const { publish } = require('../src')
 

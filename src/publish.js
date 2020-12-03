@@ -2,7 +2,7 @@ const fs = require('fs')
 const path = require('path')
 
 const webExt = require('web-ext')
-const defaultAddonSigner = require('sign-addon').default
+const { signAddon: defaultAddonSigner } = require('sign-addon')
 
 const { allowedChannels } = require('./constants')
 const { verifyOptions } = require('./utils')

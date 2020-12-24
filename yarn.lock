@@ -6010,9 +6010,9 @@ jest-message-util@^26.6.2:
     stack-utils "^2.0.2"
 
 jest-mock-module@^0.1.3:
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/jest-mock-module/-/jest-mock-module-0.1.3.tgz#910a95b8e4f3935b868dd9895b8a2b3bfcf15aa8"
-  integrity sha512-5W2Xl2iz6Q2X/0w2rDVDGfRvhcwggUXShCzcc3Zqw1u+eVVnIsrR9hU6gzmI2pq+X24BPUG9/HY2rWIvlzyzuQ==
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/jest-mock-module/-/jest-mock-module-0.1.4.tgz#f2c40e2874f155a16fc662d83a3b5284a9398fe7"
+  integrity sha512-BQCfgHpxi8BSNzfVeFKMSsaOUB3C3JqylGsTjRasfDzmbT4m89uxGgDOaRJtGEIA/qinYQG6VVOTow6uEaHagw==
   dependencies:
     jest-mock-props "^1.8.2"
 

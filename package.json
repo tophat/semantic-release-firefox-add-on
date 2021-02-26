@@ -19,7 +19,7 @@
     "@babel/preset-env": "^7.6.0",
     "@tophat/commitizen-adapter": "^0.1.0",
     "@tophat/commitlint-config": "^0.1.2",
-    "@tophat/eslint-config": "^0.7.0",
+    "@tophat/eslint-config": "^0.8.0",
     "@types/jest": "^26.0.0",
     "aggregate-error": "^3.0.1",
     "all-contributors-cli": "^6.9.1",

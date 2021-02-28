@@ -7,7 +7,7 @@ const { signAddon: defaultAddonSigner } = require('sign-addon')
 const { allowedChannels } = require('./constants')
 const { verifyOptions } = require('./utils')
 
-const publish = async options => {
+const publish = async (options) => {
     // This will create an unsigned xpi from sourceDir folder (dist) it will
     // then pass the unsigned xpi to the signing api, mozilla will validate the
     // xpi and sign it if it's legitimate. They will give us back a signed xpi
@@ -25,7 +25,7 @@ const publish = async options => {
 
     const { FIREFOX_API_KEY, FIREFOX_SECRET_KEY } = process.env
 
-    const signAddon = async params => {
+    const signAddon = async (params) => {
         const unsignedXpiFile = path.join(artifactsDir, `unsigned-${targetXpi}`)
         fs.writeFileSync(unsignedXpiFile, fs.readFileSync(params.xpiPath))
         const result = await defaultAddonSigner(params)

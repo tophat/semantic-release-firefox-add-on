@@ -1498,11 +1498,6 @@
   resolved "https://registry.yarnpkg.com/@tophat/commit-utils-core/-/commit-utils-core-0.1.0.tgz#ee3a13a3c9a25a22e8f3e98e482f5219d9597711"
   integrity sha512-+XNgDrETz85QPWa/h7SfNwIIKME5gcQyGeqkWDS+aqMRWFUzKNttrz3WgLup7fZTRpCmuBzxAJfj0d/lCL3JWA==
 
-"@tophat/commit-utils-core@^0.0.9":
-  version "0.0.9"
-  resolved "https://registry.yarnpkg.com/@tophat/commit-utils-core/-/commit-utils-core-0.0.9.tgz#63834f018d61a80d68b49fb626fd3d9e8d186987"
-  integrity sha512-IhyyreVK3RxsVUfZ3Y77EkU7rYhedlL+z1wTkVBv29Q6+HyQhEstrCVUL2pOgDdhwfnlO0BHJNmDaQc7nmhlng==
-
 "@tophat/commitizen-adapter@^0.1.0":
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@tophat/commitizen-adapter/-/commitizen-adapter-0.1.0.tgz#c9c137f22e1dd49006d35a2647bd441ab5fadd5a"
@@ -1513,12 +1508,12 @@
     longest "^2.0.1"
     word-wrap "^1.0.3"
 
-"@tophat/commitlint-config@^0.1.2":
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/@tophat/commitlint-config/-/commitlint-config-0.1.2.tgz#d26e1f2b16c23cb076c6039d1cf737d5b72d5e75"
-  integrity sha512-jtyv/HAz4ciZWHZatIzXE3FPRbCFExPbo9n4DRgwCqa086QxK+CPyHQIeHki+T3Z8zyJeFr19Rohd8DhYM9GYQ==
+"@tophat/commitlint-config@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@tophat/commitlint-config/-/commitlint-config-0.3.0.tgz#80fab546df1ef647d389f2628af7274a41a3fc43"
+  integrity sha512-0natDM9Rk6uHZrKOnxmVWjWPvl90dkU9REA8jKpjHq4dhAUJHVMEZVWl3jidM8HGWJqnOMS7oe36uDA+z/F7HQ==
   dependencies:
-    "@tophat/commit-utils-core" "^0.0.9"
+    "@tophat/commit-utils-core" "*"
 
 "@tophat/eslint-config@^0.8.0":
   version "0.8.0"

@@ -1499,9 +1499,9 @@
   integrity sha512-+XNgDrETz85QPWa/h7SfNwIIKME5gcQyGeqkWDS+aqMRWFUzKNttrz3WgLup7fZTRpCmuBzxAJfj0d/lCL3JWA==
 
 "@tophat/commitizen-adapter@^0.5.0":
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/@tophat/commitizen-adapter/-/commitizen-adapter-0.5.0.tgz#a253ee0e2ebaa912ba58abac2d66017c458b37c6"
-  integrity sha512-KRKkYMslfUwF/bnAOA1tli0n/e/jG2xyrNBSxfpsJVlUXs59ouyvZh9F7rK9nrzzOBnvxzO1v2XqX6ilstnZsQ==
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/@tophat/commitizen-adapter/-/commitizen-adapter-0.5.1.tgz#7229dab98151dc4dac3efa34da1e4410ab16c3cf"
+  integrity sha512-4DBhOS+3gflp5mkWoi8xCSYLdvoMH02D6WvLOeFLekKzQv5NPI1Jm2+LiV9tXWszSxpihNXPr+Tn+4SLe3w5RA==
   dependencies:
     "@tophat/commit-utils-core" "*"
     lodash "^4.17.10"

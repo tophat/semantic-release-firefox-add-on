@@ -1509,9 +1509,9 @@
     word-wrap "^1.0.3"
 
 "@tophat/commitlint-config@^0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@tophat/commitlint-config/-/commitlint-config-0.3.0.tgz#80fab546df1ef647d389f2628af7274a41a3fc43"
-  integrity sha512-0natDM9Rk6uHZrKOnxmVWjWPvl90dkU9REA8jKpjHq4dhAUJHVMEZVWl3jidM8HGWJqnOMS7oe36uDA+z/F7HQ==
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/@tophat/commitlint-config/-/commitlint-config-0.3.1.tgz#7e4b287b79e5a7406c0eebc782d31fc4d3f0ad1b"
+  integrity sha512-57Vilukw/BQ3ovNfftM0kDg67BNeuP+1O1hY/Nebydb/FOBhG6Jnvmqo14NGJHGSSX/NoT5IT+79lds08Nu7Xg==
   dependencies:
     "@tophat/commit-utils-core" "*"
 

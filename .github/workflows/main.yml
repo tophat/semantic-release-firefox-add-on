@@ -89,7 +89,7 @@ jobs:
       - name: Install Node
         uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node }}
+          node-version: 14
       - name: Yarn Cache
         id: yarn-cache
         uses: actions/cache@v2
@@ -111,6 +111,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Install Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
       - name: Yarn Cache
         id: yarn-cache
         uses: actions/cache@v2
@@ -124,4 +128,30 @@ jobs:
         run: yarn install --frozen-lockfile --ci
       - name: Lint
         run: yarn lint
-
+  release:
+    """
+    Semantic release controls whether this runs or dry-runs.
+    Non-master branches will dry-run.
+    """
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+      - name: Yarn Cache
+        id: yarn-cache
+        uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{runner.os}}-yarn-
+      - name: Install dependencies
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
+        run: yarn install --frozen-lockfile --ci
+      - name: Release
+        run: |
+          yarn build
+          yarn release

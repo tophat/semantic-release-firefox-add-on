@@ -1,6 +1,6 @@
 # semantic-release-firefox-add-on
-
-[![CircleCI](https://circleci.com/gh/tophat/semantic-release-firefox-add-on.svg?style=svg)](https://circleci.com/gh/tophat/semantic-release-firefox-add-on)
+[![Semantic Release Firefox Add-on
+CICD](https://github.com/tophat/semantic-release-firefox-add-on/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/tophat/semantic-release-firefox-add-on/actions/workflows/main.yml)
 [![npm version](https://img.shields.io/npm/v/semantic-release-firefox-add-on.svg)](https://badge.fury.io/js/semantic-release-firefox-add-on)
 [![codecov](https://codecov.io/gh/tophat/semantic-release-firefox-add-on/branch/master/graph/badge.svg)](https://codecov.io/gh/tophat/semantic-release-firefox-add-on)
 [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)

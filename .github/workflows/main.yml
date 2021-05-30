@@ -129,10 +129,9 @@ jobs:
       - name: Lint
         run: yarn lint
   release:
-    # Semantic release controls whether this runs or dry-runs.
-    # Non-master branches will dry-run.
     runs-on: ubuntu-latest
     needs: [lint, test, build, e2e]
+    if: github.ref == 'refs/heads/master'
     steps:
       - uses: actions/checkout@v2
       - name: Install Node

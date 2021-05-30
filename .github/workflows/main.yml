@@ -35,6 +35,7 @@ jobs:
         run: |
           cd e2e
           yarn test-e2e
+          yarn report-coverage
   lint:
     runs-on: ubuntu-latest
     steps:

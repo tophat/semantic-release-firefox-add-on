@@ -129,10 +129,8 @@ jobs:
       - name: Lint
         run: yarn lint
   release:
-    """
-    Semantic release controls whether this runs or dry-runs.
-    Non-master branches will dry-run.
-    """
+    # Semantic release controls whether this runs or dry-runs.
+    # Non-master branches will dry-run.
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2

@@ -50,6 +50,25 @@ jobs:
       - name: Test
         run: |
           yarn test-coverage
+      - uses: actions/upload-artifact@v2
+        with:
+          name: coverage-report
+          path: artifacts/coverage
+  coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile --ci
+      - uses: actions/download-artifact@v2
+        with:
+          name: coverage-report
+      - name: Test
+        run: |
           yarn report-coverage
   lint:
     runs-on: ubuntu-latest

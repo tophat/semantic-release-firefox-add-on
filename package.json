@@ -86,6 +86,7 @@
     ]
   },
   "release": {
+    "branches": ["master"],
     "dryRun": false,
     "plugins": [
       "@semantic-release/commit-analyzer",

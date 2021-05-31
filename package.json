@@ -21,7 +21,7 @@
     "@tophat/commitlint-config": "^0.3.0",
     "@tophat/eslint-config": "^0.8.0",
     "@types/jest": "^26.0.0",
-    "aggregate-error": "^3.0.1",
+    "aggregate-error": "^4.0.0",
     "all-contributors-cli": "^6.9.1",
     "babel-eslint": "^10.0.2",
     "codecov": "^3.5.0",

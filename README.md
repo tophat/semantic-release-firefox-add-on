@@ -98,14 +98,16 @@ Follow the [contributing guide](docs/contributing.md).
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/dbasilio"><img src="https://avatars0.githubusercontent.com/u/8311284?v=4" width="100px;" alt=""/><br /><sub><b>Daniel Basilio</b></sub></a><br /><a href="https://github.com/tophat/semantic-release-firefox-add-on/commits?author=dbasilio" title="Code">💻</a> <a href="https://github.com/tophat/semantic-release-firefox-add-on/commits?author=dbasilio" title="Documentation">📖</a> <a href="#maintenance-dbasilio" title="Maintenance">🚧</a> <a href="#ideas-dbasilio" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/tophat/semantic-release-firefox-add-on/pulls?q=is%3Apr+reviewed-by%3Adbasilio" title="Reviewed Pull Requests">👀</a></td>
-    <td align="center"><a href="http://emmanuel.ogbizi.com"><img src="https://avatars0.githubusercontent.com/u/2528959?v=4" width="100px;" alt=""/><br /><sub><b>Emmanuel Ogbizi</b></sub></a><br /><a href="https://github.com/tophat/semantic-release-firefox-add-on/commits?author=iamogbz" title="Code">💻</a> <a href="https://github.com/tophat/semantic-release-firefox-add-on/commits?author=iamogbz" title="Documentation">📖</a> <a href="#design-iamogbz" title="Design">🎨</a> <a href="#infra-iamogbz" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/tophat/semantic-release-firefox-add-on/commits?author=iamogbz" title="Tests">⚠️</a></td>
-    <td align="center"><a href="https://github.com/iorate"><img src="https://avatars3.githubusercontent.com/u/682043?v=4" width="100px;" alt=""/><br /><sub><b>iorate</b></sub></a><br /><a href="https://github.com/tophat/semantic-release-firefox-add-on/commits?author=iorate" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/dbasilio"><img src="https://avatars0.githubusercontent.com/u/8311284?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Daniel Basilio</b></sub></a><br /><a href="https://github.com/tophat/semantic-release-firefox-add-on/commits?author=dbasilio" title="Code">💻</a> <a href="https://github.com/tophat/semantic-release-firefox-add-on/commits?author=dbasilio" title="Documentation">📖</a> <a href="#maintenance-dbasilio" title="Maintenance">🚧</a> <a href="#ideas-dbasilio" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/tophat/semantic-release-firefox-add-on/pulls?q=is%3Apr+reviewed-by%3Adbasilio" title="Reviewed Pull Requests">👀</a></td>
+    <td align="center"><a href="http://emmanuel.ogbizi.com"><img src="https://avatars0.githubusercontent.com/u/2528959?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Emmanuel Ogbizi</b></sub></a><br /><a href="https://github.com/tophat/semantic-release-firefox-add-on/commits?author=iamogbz" title="Code">💻</a> <a href="https://github.com/tophat/semantic-release-firefox-add-on/commits?author=iamogbz" title="Documentation">📖</a> <a href="#design-iamogbz" title="Design">🎨</a> <a href="#infra-iamogbz" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/tophat/semantic-release-firefox-add-on/commits?author=iamogbz" title="Tests">⚠️</a></td>
+    <td align="center"><a href="https://github.com/iorate"><img src="https://avatars3.githubusercontent.com/u/682043?v=4?s=100" width="100px;" alt=""/><br /><sub><b>iorate</b></sub></a><br /><a href="https://github.com/tophat/semantic-release-firefox-add-on/commits?author=iorate" title="Code">💻</a></td>
+    <td align="center"><a href="https://www.karnov.club/"><img src="https://avatars.githubusercontent.com/u/6210361?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Marc Cataford</b></sub></a><br /><a href="#infra-mcataford" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
   </tr>
 </table>
 
-<!-- markdownlint-enable -->
+<!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 _Add more contributors using [all-contributors](https://allcontributors.org/)_

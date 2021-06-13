@@ -39,13 +39,13 @@ describe('verifyConditions', () => {
 
     it('fails if extensionId is missing from options', () => {
         expect(() => verifyConditions({ targetXpi })).toThrow(
-            'No extensionId was specified',
+            'extensionId is missing',
         )
     })
 
     it('fails if targetXpi is missing from options', () => {
         expect(() => verifyConditions({ extensionId })).toThrow(
-            'No targetXpi was specified',
+            'targetXpi is missing',
         )
     })
 

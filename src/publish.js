@@ -4,7 +4,7 @@ const path = require('path')
 const webExt = require('web-ext')
 const { signAddon: defaultAddonSigner } = require('sign-addon')
 
-const { allowedChannels } = require('./constants')
+const { allowedChannels, requiredOptions } = require('./constants')
 const { verifyOptions } = require('./utils')
 
 const publish = async (options) => {
@@ -21,7 +21,7 @@ const publish = async (options) => {
         channel,
         sourceDir,
         targetXpi,
-    } = verifyOptions(options, ['extensionId', 'targetXpi'])
+    } = verifyOptions(options, requiredOptions).verified
 
     const { FIREFOX_API_KEY, FIREFOX_SECRET_KEY } = process.env
 

@@ -46,14 +46,14 @@ describe('prepare', () => {
 
     it('fails if cannot read manifest file', () => {
         expect(() => prepare(mockOptions, defaultConfig)).toThrow(
-            'Unable to read manifest.json file',
+            'Failed to read manifest',
         )
     })
 
     it('fails if cannot parse manifest file', () => {
         vol.fromJSON({ 'dist/manifest.json': 'this is not valid json' })
         expect(() => prepare({}, defaultConfig)).toThrow(
-            'Failed to parse manifest.json',
+            'Failed to parse manifest',
         )
     })
 
@@ -61,7 +61,7 @@ describe('prepare', () => {
         jest.spyOn(fs, 'readFileSync').mockImplementationOnce(() => '{}')
         expect(() =>
             prepare({ sourceDir: 'sourceDir' }, defaultConfig),
-        ).toThrow('Failed to write updated manifest.json')
+        ).toThrow('Failed to write updated manifest')
     })
 
     it.each([

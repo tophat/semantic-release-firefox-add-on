@@ -35,10 +35,8 @@ describe('publish', () => {
     })
     beforeEach(() => {
         vol.fromJSON({
-            [path.join(
-                mockOptions.sourceDir,
-                mockOptions.manifestPath,
-            )]: JSON.stringify(mockManifestJSON),
+            [path.join(mockOptions.sourceDir, mockOptions.manifestPath)]:
+                JSON.stringify(mockManifestJSON),
         })
     })
     afterEach(() => {

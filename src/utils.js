@@ -8,16 +8,19 @@ const maybeThrowErrors = (errors) => {
     }
 }
 
-const verifyOptions = (options, required = []) => {
+const verifyOptions = (options, required = {}, throwErrors = true) => {
     const errors = []
     const mergedOptions = { ...defaultOptions, ...options }
-    required.forEach((prop) => {
+    Object.keys(required).forEach((prop) => {
+        mergedOptions[prop] = options[prop]
         if (mergedOptions[prop] === undefined) {
-            errors.push(`${prop} is missing from the options`)
+            errors.push(`${prop} is missing. ${required[prop]}`)
         }
     })
-    maybeThrowErrors(errors)
-    return mergedOptions
+    if (throwErrors) {
+        maybeThrowErrors(errors)
+    }
+    return { verified: mergedOptions, errors }
 }
 
 module.exports = {

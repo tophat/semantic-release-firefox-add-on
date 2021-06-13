@@ -5,26 +5,9 @@ const { requiredEnvs, requiredOptions } = require('./constants')
 const { maybeThrowErrors, verifyOptions } = require('./utils')
 
 const verifyConditions = (options) => {
-    const verified = verifyOptions(options)
+    const { verified, errors } = verifyOptions(options, requiredOptions, false)
+    errors.push(...verifyOptions(process.env, requiredEnvs, false).errors)
     const { manifestPath, sourceDir } = verified
-    const errors = []
-
-    Object.keys(requiredEnvs).forEach((envVarName) => {
-        if (!process.env[envVarName]) {
-            errors.push(
-                `${envVarName} is missing from the environment. ${requiredEnvs[envVarName]}`,
-            )
-        }
-    })
-
-    Object.keys(requiredOptions).forEach((option) => {
-        if (!verified[option]) {
-            errors.push(
-                `No ${option} was specified in package.json. ${requiredOptions[option]}`,
-            )
-        }
-    })
-
     const manifestExists = fs.existsSync(path.join(sourceDir, manifestPath))
     if (!manifestExists) {
         errors.push(

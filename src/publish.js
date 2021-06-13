@@ -4,7 +4,7 @@ const path = require('path')
 const webExt = require('web-ext')
 const { signAddon: defaultAddonSigner } = require('sign-addon')
 
-const { allowedChannels } = require('./constants')
+const { allowedChannels, requiredOptions } = require('./constants')
 const { verifyOptions } = require('./utils')
 
 const publish = async (options) => {
@@ -15,13 +15,8 @@ const publish = async (options) => {
     // If there's an error with the validation, webExt sign will log a link to
     // the console which will lead to the validation page which should contain
     // detailed reasons why the extension was rejected
-    const {
-        extensionId,
-        artifactsDir,
-        channel,
-        sourceDir,
-        targetXpi,
-    } = verifyOptions(options, ['extensionId', 'targetXpi'])
+    const { extensionId, artifactsDir, channel, sourceDir, targetXpi } =
+        verifyOptions(options, requiredOptions).verified
 
     const { FIREFOX_API_KEY, FIREFOX_SECRET_KEY } = process.env
 

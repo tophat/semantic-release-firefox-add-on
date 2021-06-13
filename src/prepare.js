@@ -3,8 +3,10 @@ const path = require('path')
 
 const { verifyOptions } = require('./utils')
 
+const withErrMsg = (e, message) => ((e.message = `${message}. ${e.message}`), e)
+
 const prepare = (options, { nextRelease, logger }) => {
-    const { sourceDir, manifestPath } = verifyOptions(options)
+    const { sourceDir, manifestPath } = verifyOptions(options).verified
 
     const version = nextRelease.version
     const normalizedManifestPath = path.join(sourceDir, manifestPath)
@@ -13,7 +15,7 @@ const prepare = (options, { nextRelease, logger }) => {
     try {
         manifest = fs.readFileSync(normalizedManifestPath)
     } catch (e) {
-        throw new Error('Unable to read manifest.json file from dist folder')
+        throw withErrMsg(e, 'Failed to read manifest file from dist folder')
     }
 
     try {
@@ -21,15 +23,13 @@ const prepare = (options, { nextRelease, logger }) => {
         jsonManifest.version = version
         manifest = JSON.stringify(jsonManifest, null, 2)
     } catch (e) {
-        throw new Error('Failed to parse manifest.json into JSON')
+        throw withErrMsg(e, 'Failed to parse manifest into JSON')
     }
 
     try {
         fs.writeFileSync(normalizedManifestPath, manifest)
     } catch (e) {
-        throw new Error(
-            'Failed to write updated manifest.json to the dist folder',
-        )
+        throw withErrMsg(e, 'Failed to write updated manifest to dist folder')
     }
 
     logger.log('Wrote version %s to %s', version, normalizedManifestPath)

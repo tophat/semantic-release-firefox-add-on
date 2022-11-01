@@ -4,13 +4,13 @@
     "semantic-release": "^17.2.3"
   },
   "scripts": {
-    "test-e2e": "FIREFOX_API_KEY='dummy' FIREFOX_SECRET_KEY='dummy' ../node_modules/.bin/semantic-release"
+    "test-e2e": "FIREFOX_API_KEY='dummy' FIREFOX_SECRET_KEY='dummy' yarn semantic-release"
   },
   "release": {
     "dryRun": true,
     "plugins": [
       [
-        "../src/index.js",
+        "../lib/index.js",
         {
           "artifactsDir": "./",
           "sourceDir": "./",

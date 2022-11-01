@@ -1,10 +1,10 @@
-const fs = require('fs')
-const path = require('path')
+import fs from 'fs'
+import path from 'path'
 
-const { requiredEnvs, requiredOptions } = require('./constants')
-const { maybeThrowErrors, verifyOptions } = require('./utils')
+import { requiredEnvs, requiredOptions } from './constants'
+import { maybeThrowErrors, verifyOptions } from './utils'
 
-const verifyConditions = (options) => {
+export const verifyConditions = (options: any) => {
     const { verified, errors } = verifyOptions(options, requiredOptions, false)
     errors.push(...verifyOptions(process.env, requiredEnvs, false).errors)
     const { manifestPath, sourceDir } = verified
@@ -15,8 +15,4 @@ const verifyConditions = (options) => {
         )
     }
     maybeThrowErrors(errors)
-}
-
-module.exports = {
-    verifyConditions,
 }

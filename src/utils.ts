@@ -1,15 +1,19 @@
-const AggregateError = require('aggregate-error')
+import AggregateError from 'aggregate-error'
 
-const { defaultOptions } = require('./constants')
+import { defaultOptions } from './constants'
 
-const maybeThrowErrors = (errors) => {
+export const maybeThrowErrors = (errors: string[]) => {
     if (errors.length > 0) {
         throw new AggregateError(errors)
     }
 }
 
-const verifyOptions = (options, required = {}, throwErrors = true) => {
-    const errors = []
+export const verifyOptions = (
+    options: any,
+    required: Record<string, unknown> = {},
+    throwErrors = true,
+) => {
+    const errors: string[] = []
     const mergedOptions = { ...defaultOptions, ...options }
     Object.keys(required).forEach((prop) => {
         mergedOptions[prop] = options[prop]
@@ -21,9 +25,4 @@ const verifyOptions = (options, required = {}, throwErrors = true) => {
         maybeThrowErrors(errors)
     }
     return { verified: mergedOptions, errors }
-}
-
-module.exports = {
-    maybeThrowErrors,
-    verifyOptions,
 }

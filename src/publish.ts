@@ -1,13 +1,13 @@
-const fs = require('fs')
-const path = require('path')
+import fs from 'fs'
+import path from 'path'
 
-const webExt = require('web-ext')
-const { signAddon: defaultAddonSigner } = require('sign-addon')
+import { signAddon as defaultAddonSigner } from 'sign-addon'
+import webExt from 'web-ext'
 
-const { allowedChannels, requiredOptions } = require('./constants')
-const { verifyOptions } = require('./utils')
+import { allowedChannels, requiredOptions } from './constants'
+import { verifyOptions } from './utils'
 
-const publish = async (options) => {
+export const publish = async (options: any) => {
     // This will create an unsigned xpi from sourceDir folder (dist) it will
     // then pass the unsigned xpi to the signing api, mozilla will validate the
     // xpi and sign it if it's legitimate. They will give us back a signed xpi
@@ -20,7 +20,7 @@ const publish = async (options) => {
 
     const { FIREFOX_API_KEY, FIREFOX_SECRET_KEY } = process.env
 
-    const signAddon = async (params) => {
+    const signAddon = async (params: any) => {
         const unsignedXpiFile = path.join(artifactsDir, `unsigned-${targetXpi}`)
         fs.writeFileSync(unsignedXpiFile, fs.readFileSync(params.xpiPath))
         const result = await defaultAddonSigner(params)
@@ -48,8 +48,4 @@ const publish = async (options) => {
     )
     const [xpiFile] = downloadedFiles
     fs.renameSync(xpiFile, path.join(artifactsDir, targetXpi))
-}
-
-module.exports = {
-    publish,
 }

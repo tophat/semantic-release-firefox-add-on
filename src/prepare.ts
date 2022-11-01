@@ -1,11 +1,13 @@
-const fs = require('fs')
-const path = require('path')
+import fs from 'fs'
+import path from 'path'
 
-const { verifyOptions } = require('./utils')
+import { verifyOptions } from './utils'
 
-const withErrMsg = (e, message) => ((e.message = `${message}. ${e.message}`), e)
+const withErrMsg = (e: any, message: string) => (
+    (e.message = `${message}. ${e.message}`), e
+)
 
-const prepare = (options, { nextRelease, logger }) => {
+export const prepare = (options: any, { nextRelease, logger }: any) => {
     const { sourceDir, manifestPath } = verifyOptions(options).verified
 
     const version = nextRelease.version
@@ -33,8 +35,4 @@ const prepare = (options, { nextRelease, logger }) => {
     }
 
     logger.log('Wrote version %s to %s', version, normalizedManifestPath)
-}
-
-module.exports = {
-    prepare,
 }

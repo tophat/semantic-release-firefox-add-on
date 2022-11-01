@@ -20,7 +20,9 @@ export const publish = async (options: any) => {
 
     const { FIREFOX_API_KEY, FIREFOX_SECRET_KEY } = process.env
 
-    const signAddon = async (params: any) => {
+    const signAddon = async (
+        params: Parameters<typeof defaultAddonSigner>[0],
+    ) => {
         const unsignedXpiFile = path.join(artifactsDir, `unsigned-${targetXpi}`)
         fs.writeFileSync(unsignedXpiFile, fs.readFileSync(params.xpiPath))
         const result = await defaultAddonSigner(params)
@@ -37,8 +39,10 @@ export const publish = async (options: any) => {
 
     const { downloadedFiles } = await webExt.cmd.sign(
         {
-            apiKey: FIREFOX_API_KEY,
-            apiSecret: FIREFOX_SECRET_KEY,
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            apiKey: FIREFOX_API_KEY!,
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            apiSecret: FIREFOX_SECRET_KEY!,
             artifactsDir,
             channel,
             id: extensionId,
@@ -46,6 +50,7 @@ export const publish = async (options: any) => {
         },
         { signAddon },
     )
-    const [xpiFile] = downloadedFiles
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const [xpiFile] = downloadedFiles!
     fs.renameSync(xpiFile, path.join(artifactsDir, targetXpi))
 }

@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "target": "ES2022",
+        "noImplicitAny": true,
+        "moduleResolution": "node",
+        "module": "CommonJS",
+        "allowJs": true,
+        "strict": true,
+        "declaration": true,
+        "allowSyntheticDefaultImports": true,
+        "downlevelIteration": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "resolveJsonModule": true,
+        "lib": ["ES2022"]
+    },
+    "include": ["."],
+    "exclude": ["**/node_modules", "**/.yarn"]
+}

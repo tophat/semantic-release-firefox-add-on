@@ -1,9 +1,12 @@
-/* eslint-disable no-console */
-const fs = require('fs')
+import fs from 'fs'
 
-const { vol } = require('memfs')
+import { vol } from 'memfs'
 
-const { prepare } = require('../src')
+import addOn from 'semantic-release-firefox-add-on'
+
+const { prepare } = addOn
+
+jest.mock('fs')
 
 describe('prepare', () => {
     const mockOptions = {
@@ -46,22 +49,22 @@ describe('prepare', () => {
     })
 
     it('fails if cannot read manifest file', () => {
-        expect(() => prepare(mockOptions, defaultConfig)).toThrow(
+        expect(() => void prepare(mockOptions, defaultConfig)).toThrow(
             'Failed to read manifest',
         )
     })
 
     it('fails if cannot parse manifest file', () => {
         vol.fromJSON({ 'dist/manifest.json': 'this is not valid json' })
-        expect(() => prepare({}, defaultConfig)).toThrow(
+        expect(() => void prepare({}, defaultConfig)).toThrow(
             'Failed to parse manifest',
         )
     })
 
     it('fails if cannot update manifest file', () => {
         jest.spyOn(fs, 'readFileSync').mockImplementationOnce(() => '{}')
-        expect(() =>
-            prepare({ sourceDir: 'sourceDir' }, defaultConfig),
+        expect(
+            () => void prepare({ sourceDir: 'sourceDir' }, defaultConfig),
         ).toThrow('Failed to write updated manifest')
     })
 
@@ -71,7 +74,7 @@ describe('prepare', () => {
     ])('successfully updates manifest file', (options, manifestPath) => {
         vol.fromJSON({ [manifestPath]: '{}' })
         prepare(options, defaultConfig)
-        expect(JSON.parse(fs.readFileSync(manifestPath))).toEqual(
+        expect(JSON.parse(fs.readFileSync(manifestPath, 'utf-8'))).toEqual(
             expect.objectContaining({
                 version: 'v3.2.1',
             }),

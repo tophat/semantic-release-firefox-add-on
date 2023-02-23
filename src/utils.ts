@@ -1,5 +1,3 @@
-import AggregateError from 'aggregate-error'
-
 import { defaultOptions } from './constants'
 
 export const maybeThrowErrors = (errors: string[]) => {

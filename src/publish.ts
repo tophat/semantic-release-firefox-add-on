@@ -1,13 +1,22 @@
 import fs from 'fs'
 import path from 'path'
 
-import { signAddon as defaultAddonSigner } from 'sign-addon'
-import webExt from 'web-ext'
-
 import { allowedChannels, requiredOptions } from './constants'
 import { verifyOptions } from './utils'
 
-export const publish = async (options: any) => {
+export type PublishOptions = {
+    artifactsDir: string
+    channel: string
+    manifestPath: string
+    sourceDir: string
+    extensionId: string
+    targetXpi: string
+}
+
+export const publish = async (options: PublishOptions) => {
+    const { signAddon: defaultAddonSigner } = await import('sign-addon')
+    const webExt = await import('web-ext')
+
     // This will create an unsigned xpi from sourceDir folder (dist) it will
     // then pass the unsigned xpi to the signing api, mozilla will validate the
     // xpi and sign it if it's legitimate. They will give us back a signed xpi

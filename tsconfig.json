@@ -2,7 +2,7 @@
     "compilerOptions": {
         "target": "ES2022",
         "noImplicitAny": true,
-        "moduleResolution": "node",
+        "moduleResolution": "node16",
         "module": "CommonJS",
         "allowJs": true,
         "strict": true,

@@ -25,38 +25,40 @@ describe('verifyConditions', () => {
 
     it('fails if FIREFOX_API_KEY is missing from env', () => {
         firefoxApiKeySpy.mockReset()
-        expect(() => verifyConditions({ extensionId, targetXpi })).toThrow(
+        expect(() => void verifyConditions({ extensionId, targetXpi })).toThrow(
             'FIREFOX_API_KEY is missing',
         )
     })
 
     it('fails if FIREFOX_SECRET_KEY is missing from env', () => {
         firefoxSecretKeySpy.mockReset()
-        expect(() => verifyConditions({ extensionId, targetXpi })).toThrow(
+        expect(() => void verifyConditions({ extensionId, targetXpi })).toThrow(
             'FIREFOX_SECRET_KEY is missing',
         )
     })
 
     it('fails if extensionId is missing from options', () => {
-        expect(() => verifyConditions({ targetXpi })).toThrow(
+        expect(() => void verifyConditions({ targetXpi })).toThrow(
             'extensionId is missing',
         )
     })
 
     it('fails if targetXpi is missing from options', () => {
-        expect(() => verifyConditions({ extensionId })).toThrow(
+        expect(() => void verifyConditions({ extensionId })).toThrow(
             'targetXpi is missing',
         )
     })
 
     it('fails if manifest.json file does not exist', () => {
-        expect(() => verifyConditions({ extensionId, targetXpi })).toThrow(
+        expect(() => void verifyConditions({ extensionId, targetXpi })).toThrow(
             'manifest.json was not found',
         )
     })
 
     it('succeeds if all conditions are met', () => {
         vol.fromJSON({ 'dist/manifest.json': '{}' })
-        expect(() => verifyConditions({ extensionId, targetXpi })).not.toThrow()
+        expect(
+            () => void verifyConditions({ extensionId, targetXpi }),
+        ).not.toThrow()
     })
 })

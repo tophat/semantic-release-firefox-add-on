@@ -1,10 +1,17 @@
-const fs = require('fs')
-const path = require('path')
+import fs from 'fs'
+import path from 'path'
 
-const { vol } = require('memfs')
-const { signAddon } = require('sign-addon')
+import { vol } from 'memfs'
 
-const { publish } = require('../src')
+import addOn from 'semantic-release-firefox-add-on'
+
+const { publish } = addOn
+
+const mockSignAddon = jest.fn()
+
+jest.mock('fs')
+jest.mock('sign-addon', () => ({ signAddon: mockSignAddon }))
+jest.mock('web-ext')
 
 describe('publish', () => {
     const mockManifestJSON = {
@@ -32,6 +39,8 @@ describe('publish', () => {
 
     beforeAll(() => {
         jest.spyOn(console, 'log')
+        process.env.FIREFOX_API_KEY = 'test'
+        process.env.FIREFOX_SECRET_KEY = 'test'
     })
     beforeEach(() => {
         vol.fromJSON({
@@ -49,12 +58,14 @@ describe('publish', () => {
     })
 
     it('fails if extensionId is not given', () => {
+        // @ts-expect-error testing javascript
         return expect(publish(mockOptions)).rejects.toThrow(
             'extensionId is missing',
         )
     })
 
     it('fails if targetXpi is not given', () => {
+        // @ts-expect-error testing javascript
         return expect(publish(mockOptions)).rejects.toThrow(
             'targetXpi is missing',
         )
@@ -64,17 +75,20 @@ describe('publish', () => {
         signCase                                               | signResults
         ${'signing unsuccessful'}                              | ${mockAddonSignFailed}
         ${'auto signing unsuccessful and channel is unlisted'} | ${{ ...mockAddonSignFailed, errorCode: 'ADDON_NOT_AUTO_SIGNED' }}
-    `('raises error if $signCase', ({ signResults }) => {
-        signAddon.mockResolvedValueOnce(signResults)
+    `('raises error if $signCase', async ({ signResults }) => {
+        mockSignAddon.mockResolvedValueOnce(signResults)
         return expect(publish(completeOptions)).rejects.toThrow(
             'The extension could not be signed',
         )
     })
 
     it('uses unsigned xpi if auto signing unsuccessful and channel is listed', async () => {
-        signAddon.mockResolvedValueOnce({
+        mockSignAddon.mockResolvedValueOnce({
             ...mockAddonSignFailed,
             errorCode: 'ADDON_NOT_AUTO_SIGNED',
+            id: null,
+            downloadedFiles: null,
+            errorDetails: null,
         })
         const targetXpiPath = path.join(mockOptions.artifactsDir, targetXpi)
         expect(fs.existsSync(targetXpiPath)).toBe(false)
@@ -95,9 +109,11 @@ describe('publish', () => {
         vol.fromJSON({
             [downloadedFilePath]: mockFileContent,
         })
-        signAddon.mockResolvedValueOnce({
+        mockSignAddon.mockResolvedValueOnce({
             ...mockAddonSignSuccess,
             downloadedFiles: [downloadedFilePath],
+            errorCode: null,
+            errorDetails: null,
         })
         const targetXpiPath = path.join(mockOptions.artifactsDir, targetXpi)
         expect(fs.existsSync(targetXpiPath)).toBe(false)

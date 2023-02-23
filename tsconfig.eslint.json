@@ -4,8 +4,8 @@
         "rootDir": ".",
         "declaration": false,
         "emitDeclarationOnly": false,
-        "module": "CommonJS"
+        "allowJs": true
     },
-    "include": ["."],
+    "include": [".", ".eslintrc.js"],
     "exclude": ["**/node_modules", "**/.yarn"]
 }
